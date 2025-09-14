@@ -1,13 +1,51 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>⭐Berkshire Hathaway⭐</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- 부트스트랩 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <!-- 프로젝트 로고/브랜드 -->
+      <a class="navbar-brand fw-bold" href="#">ProjectCairo</a>
+      <!-- 모바일 토글 버튼 -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- 메뉴 항목 -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">홈</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">워렌 버핏 소개</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="letters.html">주주서한</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="quotes.html">명언</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 메인 콘텐츠 (임시) -->
+  <header class="bg-light text-center py-5">
+    <div class="container">
+      <h1 class="display-4 fw-bold">Warren Buffett</h1>
+      <p class="lead">“세계 최고의 투자자, ProjectCairo로 배우다”</p>
+      <a href="about.html" class="btn btn-primary btn-lg">더 알아보기</a>
+    </div>
+  </header>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
