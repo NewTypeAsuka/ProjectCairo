@@ -1,51 +1,207 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>⭐Berkshire Hathaway⭐</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- 부트스트랩 -->
-  <link rel="stylesheet" href="style.css">
+    <!-- 기본 메타 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>NewTypePosts</title>
+
+    <!-- 부트스트랩 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> 
+
+    <!-- 공통 커스텀 CSS -->
+    <link rel="stylesheet" href="/assets/css/app.css">
 </head>
-<body>
+<body class="bg-light">
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg bg-white border-bottom">
     <div class="container">
-      <!-- 프로젝트 로고/브랜드 -->
-      <a class="navbar-brand fw-bold" href="#">ProjectCairo</a>
-      <!-- 모바일 토글 버튼 -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!-- 메뉴 항목 -->
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">홈</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">워렌 버핏 소개</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="letters.html">주주서한</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="quotes.html">명언</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+        <a class="navbar-brand fw-bold" href="/">NewTypePosts</a>
 
-  <!-- 메인 콘텐츠 (임시) -->
-  <header class="bg-light text-center py-5">
-    <div class="container">
-      <h1 class="display-4 fw-bold">Warren Buffett</h1>
-      <p class="lead">“세계 최고의 투자자, ProjectCairo로 배우다”</p>
-      <a href="about.html" class="btn btn-primary btn-lg">더 알아보기</a>
-    </div>
-  </header>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav ms-auto gap-2">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">게시글</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-primary btn-sm" href="/login.html">
+                        로그인
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== CAROUSEL ===== -->
+<section id="heroCarousel" class="bg-dark">
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+            <div class="carousel-item active">
+                <div class="d-flex align-items-center justify-content-center text-white" style="height: 100px;">
+                    <div class="text-center">
+                        <h2 class="fw-bold">NewTypePosts</h2>
+                        <p class="opacity-75 mb-0">
+                            생각을 기록하고, 공유하다
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="d-flex align-items-center justify-content-center text-white" style="height: 100px;">
+                    <div class="text-center">
+                        <h2 class="fw-bold">개발 · 기록 · 아카이브</h2>
+                        <p class="opacity-75 mb-0">
+                            나만의 게시판 프로젝트
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="d-flex align-items-center justify-content-center text-white" style="height: 100px;">
+                    <div class="text-center">
+                        <h2 class="fw-bold">Project Cairo</h2>
+                        <p class="opacity-75 mb-0">
+                            Spring Boot 기반 게시판
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== MAIN ===== -->
+<main class="container py-4">
+
+    <!-- 헤더 -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h4 mb-0">게시글</h1>
+        <a href="/post-form.html" class="btn btn-primary">
+            글 작성
+        </a>
+    </div>
+
+    <!-- 게시글 목록 -->
+    <div id="postList" class="row g-3">
+        <!-- JS로 카드 렌더링 예정 -->
+        <!-- 예시 카드 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">샘플 게시글 제목</h5>
+                    <p class="card-text text-muted small">
+                        여기에 게시글 요약이 들어갑니다.
+                    </p>
+                </div>
+                <div class="card-footer bg-white d-flex justify-content-between small text-muted">
+                    <span>상준</span>
+                    <span>2025-12-20</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">샘플 게시글 제목</h5>
+                    <p class="card-text text-muted small">
+                        여기에 게시글 요약이 들어갑니다.
+                    </p>
+                </div>
+                <div class="card-footer bg-white d-flex justify-content-between small text-muted">
+                    <span>상준</span>
+                    <span>2025-12-20</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">샘플 게시글 제목</h5>
+                    <p class="card-text text-muted small">
+                        여기에 게시글 요약이 들어갑니다.
+                    </p>
+                </div>
+                <div class="card-footer bg-white d-flex justify-content-between small text-muted">
+                    <span>상준</span>
+                    <span>2025-12-20</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">샘플 게시글 제목</h5>
+                    <p class="card-text text-muted small">
+                        여기에 게시글 요약이 들어갑니다.
+                    </p>
+                </div>
+                <div class="card-footer bg-white d-flex justify-content-between small text-muted">
+                    <span>상준</span>
+                    <span>2025-12-20</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">샘플 게시글 제목</h5>
+                    <p class="card-text text-muted small">
+                        여기에 게시글 요약이 들어갑니다.
+                    </p>
+                </div>
+                <div class="card-footer bg-white d-flex justify-content-between small text-muted">
+                    <span>상준</span>
+                    <span>2025-12-20</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">샘플 게시글 제목</h5>
+                    <p class="card-text text-muted small">
+                        여기에 게시글 요약이 들어갑니다.
+                    </p>
+                </div>
+                <div class="card-footer bg-white d-flex justify-content-between small text-muted">
+                    <span>상준</span>
+                    <span>2025-12-20</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="border-top bg-white py-3 mt-5">
+    <div class="container text-center text-muted small">
+        © 2025 NewTypeAsuka | All rights reserved.
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<!-- 공통 JS -->
+<script src="/assets/js/app.js"></script>
 </body>
 </html>
