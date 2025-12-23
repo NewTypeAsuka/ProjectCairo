@@ -14,131 +14,174 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- 공통 커스텀 CSS -->
-    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="/css/app.css">
 
     <!-- Summernote (Lite) CSS -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
+<body class="bg-light">
+<a id="top"></a> <!-- 최상단 이동 기준점 -->
 
-<body>
-    <!-- 상단 네비게이션(필요하면 너 index의 navbar 그대로 복붙해서 쓰면 됨) -->
-    <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="/">NewTypePosts</a>
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg bg-white border-bottom">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/">NewTypePosts</a>
 
-            <div class="d-flex gap-2">
-                <a class="btn btn-outline-secondary" href="/">
-                    <i class="bi bi-list"></i>
-                    목록
-                </a>
-                <button class="btn btn-primary" type="submit" form="writeForm">
-                    <i class="bi bi-check2-circle"></i>
-                    저장
-                </button>
+        <!-- 햄버거 버튼 (모바일 전용) -->
+        <button class="navbar-toggler p-0 border-0 bg-transparent shadow-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu"
+                aria-controls="navbarMenu"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <i class="bi bi-list fs-2" id="menuIcon"></i>
+        </button>
+
+        <!-- 햄버거 안에 들어갈 영역 -->
+        <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav w-100 d-flex flex-row justify-content-end gap-3 align-items-center"
+            id="authArea">
+
+            <!-- 다크모드 토글 -->
+            <li class="nav-item">
+            <div class="form-check form-switch d-flex align-items-center gap-2 mb-0">
+                <i class="bi bi-moon"></i>
+                <input class="form-check-input"
+                    type="checkbox"
+                    id="darkModeToggle"
+                    title="다크모드 전환">
             </div>
-        </div>
-    </nav>
+            </li>
 
-    <main class="container py-4" style="max-width: 960px;">
+            <!-- 회원가입 -->
+            <li class="nav-item">
+            <button class="btn btn-outline-primary btn-sm w-100 text-end"
+                type="button">
+                목록
+            </button>
+            </li>
+
+            <!-- 로그인 -->
+            <li class="nav-item">
+            <button class="btn btn-outline-primary btn-sm w-100 text-end"
+                type="button">
+                저장
+            </button>
+            </li>
+        </ul>
+        </div>
+    </div>
+</nav>
+
+
+<main class="container py-4" style="max-width: 960px;">
+    <div class="mb-3">
+        <h1 class="h4 fw-bold mb-1">글쓰기</h1>
+        <div class="text-secondary small">새 포스트를 작성해보자.</div>
+    </div>
+
+    <!-- 글쓰기 폼 -->
+    <form id="writeForm">
+        <!-- 제목 -->
         <div class="mb-3">
-            <h1 class="h4 fw-bold mb-1">글쓰기</h1>
-            <div class="text-secondary small">새 포스트를 작성해보자.</div>
+            <label for="postTitle" class="form-label fw-semibold">제목</label>
+            <input type="text"
+                    class="form-control"
+                    id="postTitle"
+                    name="title"
+                    placeholder="제목을 입력해줘"
+                    maxlength="120"
+                    required>
         </div>
 
-        <!-- 글쓰기 폼 -->
-        <form id="writeForm">
-            <!-- 제목 -->
-            <div class="mb-3">
-                <label for="postTitle" class="form-label fw-semibold">제목</label>
-                <input type="text"
-                        class="form-control"
-                        id="postTitle"
-                        name="title"
-                        placeholder="제목을 입력해줘"
-                        maxlength="120"
-                        required>
+        <!-- 작성자(임시) -->
+        <div class="mb-3">
+            <label for="postWriter" class="form-label fw-semibold">작성자</label>
+            <input type="text"
+                    class="form-control"
+                    id="postWriter"
+                    name="writer"
+                    placeholder="닉네임"
+                    maxlength="50"
+                    required>
+        </div>
+
+        <!-- 본문(Summernote 적용 대상) -->
+        <div class="mb-3">
+            <label for="editor" class="form-label fw-semibold">본문</label>
+            <textarea id="editor" name="content"></textarea>
+            <div class="form-text">
+                이미지 업로드/저장은 나중에 서버 API 붙이면서 처리하면 돼.
             </div>
+        </div>
 
-            <!-- 작성자(임시) -->
-            <div class="mb-3">
-                <label for="postWriter" class="form-label fw-semibold">작성자</label>
-                <input type="text"
-                        class="form-control"
-                        id="postWriter"
-                        name="writer"
-                        placeholder="닉네임"
-                        maxlength="50"
-                        required>
-            </div>
+        <!-- 하단 버튼 -->
+        <div class="d-flex justify-content-end gap-2">
+            <a class="btn btn-outline-secondary" href="/">
+                취소
+            </a>
+            <button class="btn btn-primary" type="submit">
+                저장
+            </button>
+        </div>
+    </form>
+</main>
 
-            <!-- 본문(Summernote 적용 대상) -->
-            <div class="mb-3">
-                <label for="editor" class="form-label fw-semibold">본문</label>
-                <textarea id="editor" name="content"></textarea>
-                <div class="form-text">
-                    이미지 업로드/저장은 나중에 서버 API 붙이면서 처리하면 돼.
-                </div>
-            </div>
+<!-- Bootstrap JS (필수: dropdown 등) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-            <!-- 하단 버튼 -->
-            <div class="d-flex justify-content-end gap-2">
-                <a class="btn btn-outline-secondary" href="/">
-                    취소
-                </a>
-                <button class="btn btn-primary" type="submit">
-                    저장
-                </button>
-            </div>
-        </form>
-    </main>
+<!-- Summernote는 jQuery 필요 -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 
-    <!-- Bootstrap JS (필수: dropdown 등) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Summernote (Lite) JS -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-ko-KR.min.js"></script>
 
-    <!-- Summernote는 jQuery 필요 -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-
-    <!-- Summernote (Lite) JS -->
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-ko-KR.min.js"></script>
-
-    <!-- 페이지 전용 JS(나중에 /assets/js/write.js 로 분리하면 됨) -->
-    <script>
-        $(document).ready(function () {
-            $('#editor').summernote({
-                lang: 'ko-KR',
-                placeholder: '여기에 글을 작성해줘.',
-                height: 360,
-                minHeight: 240,
-                maxHeight: 700,
-                focus: true,
-                toolbar: [
-                    ['style', ['style']],
-                    ['font', ['bold', 'italic', 'underline', 'clear']],
-                    ['fontname', ['fontname']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen', 'codeview', 'help']]
-                ]
-            });
-
-            // 일단 submit 동작은 막고, 나중에 API 붙일 때 처리
-            $('#writeForm').on('submit', function (e) {
-                e.preventDefault();
-
-                const title = $('#postTitle').val().trim();
-                const writer = $('#postWriter').val().trim();
-                const content = $('#editor').summernote('code');
-
-                // TODO: 나중에 fetch로 API 호출해서 저장하면 됨
-                console.log({ title, writer, content });
-
-                alert('임시: 콘솔에 출력했어. (나중에 저장 API 붙이자)');
-            });
+<!-- 페이지 전용 JS(나중에 /assets/js/write.js 로 분리하면 됨) -->
+<script>
+    $(document).ready(function () {
+        $('#editor').summernote({
+            lang: 'ko-KR',
+            placeholder: '여기에 글을 작성해줘.',
+            height: 360,
+            minHeight: 240,
+            maxHeight: 700,
+            focus: true,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
         });
-    </script>
+
+        // 일단 submit 동작은 막고, 나중에 API 붙일 때 처리
+        $('#writeForm').on('submit', function (e) {
+            e.preventDefault();
+
+            const title = $('#postTitle').val().trim();
+            const writer = $('#postWriter').val().trim();
+            const content = $('#editor').summernote('code');
+
+            // TODO: 나중에 fetch로 API 호출해서 저장하면 됨
+            console.log({ title, writer, content });
+
+            alert('임시: 콘솔에 출력했어. (나중에 저장 API 붙이자)');
+        });
+    });
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- 공통 JS -->
+<script src="/js/app.js"></script>
+<script src="/js/navbar.js"></script>
 </body>
 </html>

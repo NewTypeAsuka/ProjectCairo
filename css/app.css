@@ -1,0 +1,12 @@
+/* Navbar hamburger button: icon-only */
+.ntp-navbar-toggler {
+    border: none;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+}
+
+.ntp-navbar-toggler:focus {
+    box-shadow: none;
+    outline: none;
+}

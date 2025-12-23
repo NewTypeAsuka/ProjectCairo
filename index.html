@@ -14,88 +14,66 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- 공통 커스텀 CSS -->
-    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="/css/app.css">
 </head>
 <body class="bg-light">
-<a id="top"></a>
+<a id="top"></a> <!-- 최상단 이동 기준점 -->
 
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar navbar-expand-lg bg-white border-bottom">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="/">NewTypePosts</a>
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">NewTypePosts</a>
 
-        <!-- 햄버거 버튼 (모바일 전용) -->
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarMenu"
-                aria-controls="navbarMenu"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <!-- 햄버거 버튼 (모바일 전용) -->
+    <button class="navbar-toggler p-0 border-0 bg-transparent shadow-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarMenu"
+            aria-controls="navbarMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+        <i class="bi bi-list fs-2" id="menuIcon"></i>
+    </button>
 
-        <!-- 햄버거 안에 들어갈 영역 -->
-        <div class="collapse navbar-collapse" id="navbarMenu">
-            <ul class="navbar-nav w-100 d-flex flex-row justify-content-end gap-3 align-items-center"
-                id="authArea">
+    <!-- 햄버거 안에 들어갈 영역 -->
+    <div class="collapse navbar-collapse" id="navbarMenu">
+      <ul class="navbar-nav w-100 d-flex flex-row justify-content-end gap-3 align-items-center"
+        id="authArea">
 
-                <!-- 다크모드 토글 -->
-                <li class="nav-item">
-                    <div class="form-check form-switch d-flex align-items-center gap-2 mb-0">
-                        <i class="bi bi-moon"></i>
-                        <input class="form-check-input"
-                                type="checkbox"
-                                id="darkModeToggle"
-                                title="다크모드 전환">
-                    </div>
-                </li>
+        <!-- 다크모드 토글 -->
+        <li class="nav-item">
+          <div class="form-check form-switch d-flex align-items-center gap-2 mb-0">
+            <i class="bi bi-moon"></i>
+            <input class="form-check-input"
+                type="checkbox"
+                id="darkModeToggle"
+                title="다크모드 전환">
+          </div>
+        </li>
 
-                <!-- 회원가입 -->
-                <li class="nav-item">
-                    <button class="btn btn-outline-primary btn-sm w-100 text-end"
-                            type="button"
-                            data-bs-toggle="modal"
-                            data-bs-target="#signupModal">
-                        회원가입
-                    </button>
-                </li>
+        <!-- 회원가입 -->
+        <li class="nav-item">
+          <button class="btn btn-outline-primary btn-sm w-100 text-end"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#signupModal">
+            회원가입
+          </button>
+        </li>
 
-                <!-- 로그인 -->
-                <li class="nav-item">
-                    <button class="btn btn-outline-primary btn-sm w-100 text-end"
-                            type="button"
-                            data-bs-toggle="modal"
-                            data-bs-target="#loginModal">
-                        로그인
-                    </button>
-                </li>
-
-            </ul>
-        </div>
+        <!-- 로그인 -->
+        <li class="nav-item">
+          <button class="btn btn-outline-primary btn-sm w-100 text-end"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#loginModal">
+            로그인
+          </button>
+        </li>
+      </ul>
     </div>
+  </div>
 </nav>
-
-
-
-<!-- ===== HERO ===== -->
-<section id="heroTicker" class="bg-dark">
-    <div class="hero-wrap">
-        <!-- 배경 위에 살짝 어둡게 오버레이 -->
-        <div class="hero-overlay"></div>
-
-        <!-- 티커(무한 스크롤 텍스트) -->
-        <div class="ticker">
-            <div class="ticker__track">
-                <!-- 반복을 위해 동일 문장을 여러 번 넣어 둠 -->
-                <span class="ticker__item">abcdefghijklmnopqrstuvwxyz</span>
-                <span class="ticker__item">abcdefghijklmnopqrstuvwxyz</span>
-                <span class="ticker__item">abcdefghijklmnopqrstuvwxyz</span>
-            </div>
-        </div>
-    </div>
-</section>
-
 
 <!-- ===== MAIN ===== -->
 <main class="container py-4">
@@ -357,14 +335,11 @@
 
 </div>
 
-
-
 <!-- Bootstrap JS -->
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- 공통 JS -->
-<script src="/assets/js/app.js"></script>
+<script src="/js/app.js"></script> <!-- 모듈로 관리 -->
+<script src="/js/navbar.js"></script>
 </body>
 </html>
