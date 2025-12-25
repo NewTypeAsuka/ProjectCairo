@@ -327,19 +327,20 @@
 
 </main>
 
-<!-- ===== FOOTER ===== -->
+<!-- ===== FOOTER AREA ===== -->
 <footer class="border-top bg-white py-3 mt-5">
     <div class="container text-center text-muted small">
         © 2025 NewTypeAsuka | All rights reserved.
     </div>
 </footer>
 
-<!-- ===== MODALS ===== -->
+<!-- ===== MODALS AREA ===== -->
 
 <!-- 회원가입 모달 -->
 <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
+
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="signupModalLabel">회원가입</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -360,7 +361,9 @@
                                     aria-label="프로필 사진 업로드">
 
                                     <!-- 기본 아이콘 -->
-                                    <i class="bi bi-person fs-1"></i>
+                                    <span class="position-absolute top-50 start-50 translate-middle">
+                                        <i class="bi bi-person fs-1"></i>
+                                    </span>
 
                                     <!-- + 아이콘 -->
                                     <span class="position-absolute top-50 start-50 translate-middle">
@@ -373,57 +376,141 @@
                             <input type="file" id="profileImage" name="profileImage" class="d-none" accept="image/*">
                         </div>
 
-                        <!-- 2행: 아이디 / 비밀번호 -->
+                        <!-- 2행: 아이디 / 닉네임 -->
                         <div class="col-md-6">
-                            <label class="form-label">아이디</label>
-                            <span class="required-mark">*</span>
-                            <input type="text" class="form-control" name="userId" placeholder="아이디를 입력해주세요" required>
+                            <!-- 라벨 + 상태문구 (비밀번호 확인과 동일 패턴) -->
+                            <div class="d-flex justify-content-between align-items-center">
+                                <label class="form-label mb-0">
+                                    아이디 <span class="required-mark">*</span>
+                                </label>
+                                <!-- 상태 문구: 기본은 숨김(d-none) 처리해두고, 나중에 JS로 토글 -->
+                                <span id="userIdStatus" class="small text-muted">
+                                    중복 아이디 체크 필요
+                                </span>
+                            </div>
+
+                            <!-- 입력 + 중복확인 버튼 -->
+                            <div class="input-group mt-1">
+                                <input type="text"
+                                        class="form-control"
+                                        name="userId"
+                                        placeholder="아이디를 입력해주세요"
+                                        required>
+                                <button class="btn btn-outline-secondary"
+                                        type="button"
+                                        id="checkUserIdBtn">
+                                    확인
+                                </button>
+                            </div>
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label">비밀번호</label>
-                            <span class="required-mark">*</span>
+                            <!-- 라벨 + 상태문구 -->
+                            <div class="d-flex justify-content-between align-items-center">
+                                <label class="form-label mb-0">
+                                    닉네임 <span class="required-mark">*</span>
+                                </label>
+                                <span id="nicknameStatus" class="small text-muted">
+                                    중복 닉네임 체크 필요
+                                </span>
+                            </div>
+
+                            <!-- 입력 + 중복확인 버튼 -->
+                            <div class="input-group mt-1">
+                                <input type="text"
+                                        class="form-control"
+                                        name="nickname"
+                                        placeholder="닉네임을 입력해주세요"
+                                        required>
+                                <button class="btn btn-outline-secondary"
+                                        type="button"
+                                        id="checkNicknameBtn">
+                                    확인
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 3행: 비밀번호 -->
+                        <div class="col-md-6">
+                            <label class="form-label">
+                                비밀번호
+                                <span class="required-mark">*</span>
+                            </label>
                             <input type="password" class="form-control" name="userPw" placeholder="비밀번호를 입력해주세요" required>
                         </div>
-
-                        <!-- 3행: 닉네임 / 생년월일 -->
                         <div class="col-md-6">
-                            <label class="form-label">닉네임</label>
-                            <span class="required-mark">*</span>
-                            <input type="text" class="form-control" name="nickname" placeholder="닉네임을 입력해주세요" required>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <label class="form-label mb-0">
+                                    비밀번호 확인 <span class="required-mark">*</span>
+                                </label>
+                                <span class="small text-danger">
+                                    비밀번호 불일치
+                                </span>
+                            </div>
+                            <input type="password"
+                                class="form-control mt-1"
+                                name="userPwConfirm"
+                                placeholder="비밀번호를 다시 입력해주세요"
+                                required>
                         </div>
 
+                        <!-- 5행: 생년월일 -->
                         <div class="col-md-6">
-                            <label class="form-label">생년월일</label>
-                            <span class="required-mark">*</span>
+                            <label class="form-label">
+                                생년월일
+                                <span class="required-mark">*</span>
+                            </label>
                             <input type="date" class="form-control" name="birthday" required>
                         </div>
-
-                        <!-- 4행: 가입코드 -->
-                        <div class="col-12">
-                            <label class="form-label">추천인 코드</label>
+                        <div class="col-md-6">
+                            <label class="form-label">
+                                추천인 코드
+                            </label>
                             <input type="text" class="form-control" name="recommendCode" placeholder="추천인 코드를 입력해주세요">
                         </div>
 
-                        <div class="col-12 text-end small text-muted">* 필수 입력 항목</div>
+                        <!-- 6행: 이메일 -->
+                        <div class="col-md-12">
+                            <label class="form-label">
+                                이메일
+                                <span class="required-mark">*</span>
+                            </label>
+                            <div class="input-group"> <!-- 중복확인 버튼 -->
+                                <input type="email"
+                                        class="form-control"
+                                        name="email"
+                                        placeholder="이메일을 입력해주세요"
+                                        required>
+                                <button class="btn btn-outline-secondary"
+                                        type="button"
+                                        id="checkEmailBtn">
+                                    확인
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2 mt-2">
+                            <div class="col-12 text-end small text-muted">* 필수 입력 항목</div>
+                        </div>
 
                     </div>
                 </form>
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>
-                <button type="submit" form="signupForm" class="btn btn-primary">회원가입</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">취소</button>
+                <button type="submit" form="signupForm" class="btn btn-primary btn-sm">회원가입</button>
             </div>
+
         </div>
     </div>
 </div>
-
 
 <!-- 로그인 모달 -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
+
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="loginModalLabel">로그인</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -450,15 +537,17 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>
-                <button type="submit" form="loginForm" class="btn btn-primary">로그인</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">취소</button>
+                <button type="submit" form="loginForm" class="btn btn-primary btn-sm">로그인</button>
             </div>
+
         </div>
     </div>
 </div>
 
-<!-- ===== FLOATING ACTION BUTTONS ===== -->
-<div class="position-fixed bottom-0 end-0 p-3 d-flex flex-row gap-2" style="z-index: 1050;">
+<!-- ===== FLOATING BUTTONS AREA ===== -->
+<div class="position-fixed bottom-0 end-0 p-3 d-flex flex-row gap-2" 
+    style="z-index: 1050;">
 
     <!-- 글쓰기 버튼 -->
     <a href="/src/main/resources/templates/write.html"
