@@ -1,12 +1,19 @@
-/* Navbar hamburger button: icon-only */
+/* navbar 햄버거 버튼 */
 .ntp-navbar-toggler {
     border: none;
     background: transparent;
     padding: 0;
     box-shadow: none;
 }
-
 .ntp-navbar-toggler:focus {
     box-shadow: none;
     outline: none;
+}
+
+/* 화면 틀어짐 방지하기 위해 스크롤바 위치 고정 */
+html {
+    scrollbar-gutter: stable;
+}
+body {
+    overflow-y: scroll;
 }

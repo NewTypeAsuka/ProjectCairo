@@ -88,11 +88,43 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div class="mb-3">
             <h1 class="h4 fw-bold mb-1">포스트</h1>
-            <div class="text-secondary small">저만의 개인 블로그, 순간과 생각의 기록입니다.</div>
+            <div class="text-secondary small">순간과 생각의 기록입니다.</div>
         </div>
 
         <!-- 우측 액션 영역 -->
-        <div class="d-flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+
+            <!-- 언어 선택자 -->
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary btn-sm dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    한국어 🇰🇷
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><button class="dropdown-item" type="button" data-lang="ko">한국어 🇰🇷</button></li>
+                    <li><button class="dropdown-item" type="button" data-lang="ja">日本語 🇯🇵</button></li>
+                    <li><button class="dropdown-item" type="button" data-lang="en">English 🇺🇸</button></li>
+                </ul>
+            </div>
+
+            <!-- 태그 선택자 -->
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary btn-sm dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    태그
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><button class="dropdown-item" type="button" data-tag="all">전체</button></li>
+                    <li><button class="dropdown-item" type="button" data-tag="essay">에세이</button></li>
+                    <li><button class="dropdown-item" type="button" data-tag="dev">개발</button></li>
+                    <li><button class="dropdown-item" type="button" data-tag="thought">생각</button></li>
+                    <li><button class="dropdown-item" type="button" data-tag="review">리뷰</button></li>
+                </ul>
+            </div>
 
             <!-- 검색 입력창 (기본 접힘) -->
             <div class="collapse" id="searchCollapse">
@@ -104,7 +136,7 @@
                 </form>
             </div>
 
-            <!-- 돋보기 버튼: 클릭 시 입력창 토글 -->
+            <!-- 돋보기 버튼 -->
             <button class="btn btn-outline-secondary btn-sm d-flex align-items-center justify-content-center"
                     type="button"
                     data-bs-toggle="collapse"
@@ -116,63 +148,97 @@
             </button>
 
             <!-- 글쓰기 버튼 -->
-            <a href="/src/main/resources/templates/write.html" class="btn btn-primary btn-sm">
+            <a href="/src/main/resources/templates/write.html"
+                class="btn btn-primary btn-sm">
                 글쓰기
             </a>
         </div>
+
     </div>
 
     <!-- 게시글 목록 -->
     <div id="postList" class="row g-4">
 
+        <!-- 게시글 카드(썸네일) -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm position-relative">
+
+                <!-- 공통 Header -->
+                <div class="card-header bg-white d-flex justify-content-between align-items-center small text-muted">
+                    <span>
+                        <i class="bi bi-pin-angle-fill text-warning"></i>
+                    </span>
+                    <div class="d-flex gap-2">
+                        <span><i class="bi bi-eye"></i> 123</span>
+                        <span><i class="bi bi-chat"></i> 4</span>
+                        <span><i class="bi bi-heart"></i> 12</span>
+                    </div>
+                </div>
+
+                <!-- Body -->
+                <div class="card-body p-0">
+
+                    <!-- 썸네일 (여백 없음) -->
+                    <img src="/src/main/resources/static/img/test/프로필_아스카.png"
+                        class="img-fluid w-100"
+                        alt="게시글 썸네일">
+
+                    <!-- 텍스트 영역 -->
+                    <div class="p-3">
+                        <h5 class="card-title mb-2">
+                            샘플 게시글 제목1
+                        </h5>
+
+                        <p class="card-text text-muted mb-0">
+                            여기에 게시글 요약이 들어갑니다. 내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
+                        </p>
+                    </div>
+
+                    <a href="/read.html?id=1" class="stretched-link" aria-label="게시글로 이동"></a>
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer bg-white d-flex justify-content-between small text-muted">
+                    <span>상준</span>
+                    <span>2025-12-20</span>
+                </div>
+            </div>
+        </div>
+        
         <!-- 게시글 카드 -->
         <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm position-relative">
 
-                <!-- 썸네일 영역 -->
-                <div class="position-relative">
-                    <img src="/src/main/resources/static/img/test/프로필_아스카.png"
-                        class="card-img-top"
-                        alt="게시글 썸네일">
-
-                    <!-- 고정핀 -->
-                    <div class="position-absolute top-0 start-0 p-2">
-                        <span class="d-inline-flex align-items-center justify-content-center rounded">
-                            <i class="bi bi-pin-angle-fill text-warning small"></i>
-                        </span>
-                    </div>
-
-                    <!-- 썸네일 위 오버레이 아이콘 (우측 상단) -->
-                    <div class="position-absolute top-0 end-0 p-2">
-                        <div class="d-flex gap-2 align-items-center px-2 py-1 rounded"
-                            style="background: rgba(255,255,255,0.85);">
-                            <span class="small text-muted">
-                                <i class="bi bi-eye"></i> 123
-                            </span>
-                            <span class="small text-muted">
-                                <i class="bi bi-chat"></i> 4
-                            </span>
-                            <span class="small text-muted">
-                                <i class="bi bi-heart"></i> 12
-                            </span>
-                        </div>
+                <!-- 공통 Header -->
+                <div class="card-header bg-white d-flex justify-content-between align-items-center small text-muted">
+                    <span>
+                        <i class="bi bi-pin-angle-fill text-warning"></i>
+                    </span>
+                    <div class="d-flex gap-2">
+                        <span><i class="bi bi-eye"></i> 123</span>
+                        <span><i class="bi bi-chat"></i> 4</span>
+                        <span><i class="bi bi-heart"></i> 12</span>
                     </div>
                 </div>
 
-                <div class="card-body">
-                    <h5 class="card-title mb-2">
-                        샘플 게시글 제목1
-                    </h5>
+                <!-- Body -->
+                <div class="card-body p-0">
 
-                    <p class="card-text text-muted mb-0">
-                        여기에 게시글 요약이 들어갑니다. 내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
-                    </p>
+                    <!-- 텍스트 영역 -->
+                    <div class="p-3">
+                        <h5 class="card-title mb-2">
+                            샘플 게시글 제목2
+                        </h5>
 
-                    <!-- 카드 전체 클릭(뷰어) -->
+                        <p class="card-text text-muted mb-0">
+                            여기에 게시글 요약이 들어갑니다. 내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
+                        </p>
+                    </div>
+
                     <a href="/read.html?id=1" class="stretched-link" aria-label="게시글로 이동"></a>
                 </div>
 
-                <!-- footer: 1행(닉네임 / 날짜)만 -->
+                <!-- Footer -->
                 <div class="card-footer bg-white d-flex justify-content-between small text-muted">
                     <span>상준</span>
                     <span>2025-12-20</span>
@@ -184,50 +250,36 @@
         <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm position-relative">
 
-                <!-- 썸네일 영역 -->
-                <div class="position-relative">
-                    <img src="/src/main/resources/static/img/test/프로필_아스카.png"
-                        class="card-img-top"
-                        alt="게시글 썸네일">
-
-                    <!-- 고정핀 -->
-                    <!-- <div class="position-absolute top-0 start-0 p-2">
-                        <span class="d-inline-flex align-items-center justify-content-center rounded">
-                            <i class="bi bi-pin-angle-fill text-warning"></i>
-                        </span>
-                    </div> -->
-
-                    <!-- 썸네일 위 오버레이 아이콘 (우측 상단) -->
-                    <div class="position-absolute top-0 end-0 p-2">
-                        <div class="d-flex gap-2 align-items-center px-2 py-1 rounded"
-                            style="background: rgba(255,255,255,0.85);">
-                            <span class="small text-muted">
-                                <i class="bi bi-eye"></i> 123
-                            </span>
-                            <span class="small text-muted">
-                                <i class="bi bi-chat"></i> 4
-                            </span>
-                            <span class="small text-muted">
-                                <i class="bi bi-heart"></i> 12
-                            </span>
-                        </div>
+                <!-- 공통 Header -->
+                <div class="card-header bg-white d-flex justify-content-between align-items-center small text-muted">
+                    <span>
+                        <i class="bi bi-pin-angle-fill text-warning"></i>
+                    </span>
+                    <div class="d-flex gap-2">
+                        <span><i class="bi bi-eye"></i> 123</span>
+                        <span><i class="bi bi-chat"></i> 4</span>
+                        <span><i class="bi bi-heart"></i> 12</span>
                     </div>
                 </div>
 
-                <div class="card-body">
-                    <h5 class="card-title mb-2">
-                        샘플 게시글 제목2
-                    </h5>
+                <!-- Body -->
+                <div class="card-body p-0">
 
-                    <p class="card-text text-muted mb-0">
-                        여기에 게시글 요약이 들어갑니다. 내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
-                    </p>
+                    <!-- 텍스트 영역 -->
+                    <div class="p-3">
+                        <h5 class="card-title mb-2">
+                            샘플 게시글 제목3
+                        </h5>
 
-                    <!-- 카드 전체 클릭(뷰어) -->
+                        <p class="card-text text-muted mb-0">
+                            여기에 게시글 요약이 들어갑니다. 내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
+                        </p>
+                    </div>
+
                     <a href="/read.html?id=1" class="stretched-link" aria-label="게시글로 이동"></a>
                 </div>
 
-                <!-- footer: 1행(닉네임 / 날짜)만 -->
+                <!-- Footer -->
                 <div class="card-footer bg-white d-flex justify-content-between small text-muted">
                     <span>상준</span>
                     <span>2025-12-20</span>
@@ -235,82 +287,46 @@
             </div>
         </div>
 
-        <!-- 게시글 카드(썸네일 없음) -->
+        <!-- 게시글 카드 -->
         <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm position-relative">
 
-                <!-- 썸네일이 없을 때만 나오는 header -->
-                <div class="card-header d-flex justify-content-between align-items-center text-muted">
-                    <!-- 좌측: 고정핀 -->
-                    <span><i class="bi bi-pin-angle-fill text-warning small"></i></span>
-
-                    <!-- 우측: 조회/댓글/좋아요 -->
-                    <div class="d-flex gap-2 small">
+                <!-- 공통 Header -->
+                <div class="card-header bg-white d-flex justify-content-between align-items-center small text-muted">
+                    <span>
+                        <i class="bi bi-pin-angle-fill text-warning"></i>
+                    </span>
+                    <div class="d-flex gap-2">
                         <span><i class="bi bi-eye"></i> 123</span>
                         <span><i class="bi bi-chat"></i> 4</span>
                         <span><i class="bi bi-heart"></i> 12</span>
                     </div>
                 </div>
 
+                <!-- Body -->
+                <div class="card-body p-0">
 
-                <div class="card-body">
-                    <h5 class="card-title mb-2">
-                        샘플 게시글 제목3
-                    </h5>
+                    <!-- 텍스트 영역 -->
+                    <div class="p-3">
+                        <h5 class="card-title mb-2">
+                            샘플 게시글 제목4
+                        </h5>
 
-                    <p class="card-text text-muted mb-0">
-                        썸네일이 없는 글은 제목과 요약 위주로 보여줍니다. 요약은 길면 줄임 처리 예정.
-                    </p>
-
-                    <a href="/read.html?id=2" class="stretched-link" aria-label="게시글로 이동"></a>
-                </div>
-
-                <!-- footer: 1행(닉네임 / 날짜)만 -->
-                <div class="card-footer bg-white d-flex justify-content-between small text-muted">
-                    <span>상준</span>
-                    <span>2025-12-20</span>
-                </div>
-            </div>
-        </div>        
-
-        <!-- 게시글 카드(썸네일 없음) -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm position-relative">
-
-                <!-- 썸네일이 없을 때만 나오는 header -->
-                <div class="card-header d-flex justify-content-between align-items-center text-muted">
-                    <!-- 좌측: 고정핀 -->
-                    <span><i class="bi bi-pin-angle-fill text-warning small"></i></span>
-
-                    <!-- 우측: 조회/댓글/좋아요 -->
-                    <div class="d-flex gap-2 small">
-                        <span><i class="bi bi-eye"></i> 123</span>
-                        <span><i class="bi bi-chat"></i> 4</span>
-                        <span><i class="bi bi-heart"></i> 12</span>
+                        <p class="card-text text-muted mb-0">
+                            여기에 게시글 요약이 들어갑니다. 내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
+                        </p>
                     </div>
+
+                    <a href="/read.html?id=1" class="stretched-link" aria-label="게시글로 이동"></a>
                 </div>
 
-
-                <div class="card-body">
-                    <h5 class="card-title mb-2">
-                        샘플 게시글 제목3
-                    </h5>
-
-                    <p class="card-text text-muted mb-0">
-                        썸네일이 없는 글은 제목과 요약 위주로 보여줍니다. 요약은 길면 줄임 처리 예정.
-                    </p>
-
-                    <a href="/read.html?id=2" class="stretched-link" aria-label="게시글로 이동"></a>
-                </div>
-
-                <!-- footer: 1행(닉네임 / 날짜)만 -->
+                <!-- Footer -->
                 <div class="card-footer bg-white d-flex justify-content-between small text-muted">
                     <span>상준</span>
                     <span>2025-12-20</span>
                 </div>
             </div>
-        </div>    
-
+        </div>
     </div>
 
     <!-- 더보기 영역 -->
