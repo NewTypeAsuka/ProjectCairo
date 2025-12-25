@@ -27,54 +27,58 @@
     <div class="container">
         <a class="navbar-brand fw-bold" href="/">NewTypePosts</a>
 
-        <!-- 햄버거 버튼 (모바일 전용) -->
-        <button class="navbar-toggler p-0 border-0 bg-transparent shadow-none"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarMenu"
-                aria-controls="navbarMenu"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <i class="bi bi-list fs-2" id="menuIcon"></i>
-        </button>
+    <!-- 햄버거 버튼 (모바일 전용) -->
+    <button class="navbar-toggler p-0 border-0 bg-transparent shadow-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarMenu"
+            aria-controls="navbarMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+        <i class="bi bi-list fs-2" id="menuIcon"></i>
+    </button>
 
-        <!-- 햄버거 안에 들어갈 영역 -->
-        <div class="collapse navbar-collapse" id="navbarMenu">
+    <!-- 햄버거 안에 들어갈 영역 -->
+    <div class="collapse navbar-collapse" id="navbarMenu">
         <ul class="navbar-nav w-100 d-flex flex-row justify-content-end gap-3 align-items-center"
             id="authArea">
 
-            <!-- 다크모드 토글 -->
-            <li class="nav-item">
+        <!-- 다크모드 토글 -->
+        <li class="nav-item">
             <div class="form-check form-switch d-flex align-items-center gap-2 mb-0">
                 <i class="bi bi-moon"></i>
                 <input class="form-check-input"
-                    type="checkbox"
-                    id="darkModeToggle"
-                    title="다크모드 전환">
+                type="checkbox"
+                id="darkModeToggle"
+                title="다크모드 전환">
             </div>
-            </li>
+        </li>
 
-            <!-- 회원가입 -->
-            <li class="nav-item">
+        <!-- 회원가입 -->
+        <li class="nav-item">
             <button class="btn btn-outline-primary btn-sm w-100 text-end"
-                type="button">
-                목록
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#signupModal">
+            회원가입
             </button>
-            </li>
+        </li>
 
-            <!-- 로그인 -->
-            <li class="nav-item">
+        <!-- 로그인 -->
+        <li class="nav-item">
             <button class="btn btn-outline-primary btn-sm w-100 text-end"
-                type="button">
-                저장
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal">
+            로그인
             </button>
-            </li>
+        </li>
         </ul>
-        </div>
+    </div>
     </div>
 </nav>
 
-
+<!-- ===== CONTENT ===== -->
 <main class="container py-4" style="max-width: 960px;">
     <div class="mb-3">
         <h1 class="h4 fw-bold mb-1">글쓰기</h1>
