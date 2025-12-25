@@ -22,7 +22,7 @@
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar navbar-expand-lg bg-white border-bottom">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="/">NewTypePosts</a>
+        <a class="navbar-brand fw-bold" href="/src/main/resources/templates/index.html">NewTypePosts</a>
 
     <!-- 햄버거 버튼 (모바일 전용) -->
     <button class="navbar-toggler p-0 border-0 bg-transparent shadow-none"
@@ -79,12 +79,13 @@
 <main class="container my-4">
 
     <!-- 포스트 본문 -->
-    <article class="mb-5">
+    <article class="mb-3">
 
-        <h2 class="mb-2">포스트 제목입니다</h2>
-
-        <div class="text-muted small mb-3">
-            작성자: admin · 2025-01-01
+        <div class="mb-3">
+            <h1 class="h4 fw-bold mb-1">포스트 제목입니다</h1>
+            <div class="text-secondary small">
+                작성자: admin · 2025-01-01
+            </div>
         </div>
 
         <div class="border rounded p-4">
@@ -94,26 +95,71 @@
             </p>
         </div>
 
+        <!-- 수정/삭제 버튼 (권한 있을 때만 보이게 JS/서버에서 제어 예정) -->
+        <div class="d-flex justify-content-end gap-2 mt-3">
+        <!-- 상단고정 -->
+        <button type="button"
+                class="btn btn-outline-warning btn-sm"
+                aria-label="상단 고정">
+            <i class="bi bi-pin-angle"></i>
+            상단고정
+        </button>
+
+        <!-- 수정 -->
+        <a href="/src/main/resources/templates/write.html?id=1"
+            class="btn btn-outline-secondary btn-sm">
+            수정
+        </a>
+
+        <!-- 삭제 -->
+        <button type="button"
+                class="btn btn-outline-danger btn-sm"
+                aria-label="포스트 삭제">
+            삭제
+        </button>
+        </div>
+
     </article>
 
     <!-- 댓글 영역 -->
     <section>
 
-        <h3 class="h5 mb-3">💬 댓글</h3>
+        <h5 class="mb-3">댓글</h5>
 
         <!-- 댓글 목록 -->
         <ul class="list-group mb-4">
-
             <li class="list-group-item">
-                <div class="fw-bold">user1</div>
+                <!-- 상단 줄: 왼쪽 유저명 / 오른쪽 삭제 -->
+                <div class="d-flex justify-content-between align-items-start">
+                    <div class="fw-bold">user1</div>
+
+                    <button type="button"
+                            class="btn btn-link p-0 text-muted"
+                            aria-label="댓글 삭제"
+                            title="삭제">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+
                 <div class="small text-muted mb-1">2025-01-01</div>
                 <div>댓글 내용입니다.</div>
             </li>
 
             <li class="list-group-item">
-                <div class="fw-bold">user2</div>
-                <div class="small text-muted mb-1">2025-01-02</div>
-                <div>두 번째 댓글입니다.</div>
+                <!-- 상단 줄: 왼쪽 유저명 / 오른쪽 삭제 -->
+                <div class="d-flex justify-content-between align-items-start">
+                    <div class="fw-bold">user1</div>
+
+                    <button type="button"
+                            class="btn btn-link p-0 text-muted"
+                            aria-label="댓글 삭제"
+                            title="삭제">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+
+                <div class="small text-muted mb-1">2025-01-01</div>
+                <div>댓글 내용입니다.</div>
             </li>
 
         </ul>

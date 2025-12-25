@@ -80,7 +80,10 @@
 
     <!-- 헤더 -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h4 mb-0">포스트</h1>
+        <div class="mb-3">
+            <h1 class="h4 fw-bold mb-1">포스트</h1>
+            <div class="text-secondary small">여러 생각을 나눠보세요.</div>
+        </div>
 
         <!-- 우측 액션 영역 -->
         <div class="d-flex align-items-center gap-2">
@@ -108,7 +111,7 @@
 
             <!-- 글쓰기 버튼 -->
             <a href="/src/main/resources/templates/write.html" class="btn btn-primary btn-sm">
-                글쓰기 📝
+                글쓰기
             </a>
         </div>
     </div>
@@ -122,7 +125,16 @@
 
                 <!-- 썸네일 영역 -->
                 <div class="position-relative">
-                    <img src="/src/main/resources/static/img/test/프로필_아스카.png" class="card-img-top" alt="게시글 썸네일">
+                    <img src="/src/main/resources/static/img/test/프로필_아스카.png"
+                        class="card-img-top"
+                        alt="게시글 썸네일">
+
+                    <!-- 고정핀 -->
+                    <div class="position-absolute top-0 start-0 p-2">
+                        <span class="d-inline-flex align-items-center justify-content-center rounded">
+                            <i class="bi bi-pin-angle-fill text-warning small"></i>
+                        </span>
+                    </div>
 
                     <!-- 썸네일 위 오버레이 아이콘 (우측 상단) -->
                     <div class="position-absolute top-0 end-0 p-2">
@@ -143,9 +155,7 @@
 
                 <div class="card-body">
                     <h5 class="card-title mb-2">
-                        <!-- 고정글이면 아이콘만 -->
-                        <i class="bi bi-pin-angle-fill me-1 text-warning"></i>
-                        샘플 게시글 제목
+                        샘플 게시글 제목1
                     </h5>
 
                     <p class="card-text text-muted mb-0">
@@ -164,14 +174,22 @@
             </div>
         </div>
 
-
         <!-- 게시글 카드 -->
         <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm position-relative">
 
                 <!-- 썸네일 영역 -->
                 <div class="position-relative">
-                    <img src="/src/main/resources/static/img/test/디시자짤.jpg" class="card-img-top" alt="게시글 썸네일">
+                    <img src="/src/main/resources/static/img/test/프로필_아스카.png"
+                        class="card-img-top"
+                        alt="게시글 썸네일">
+
+                    <!-- 고정핀 -->
+                    <!-- <div class="position-absolute top-0 start-0 p-2">
+                        <span class="d-inline-flex align-items-center justify-content-center rounded">
+                            <i class="bi bi-pin-angle-fill text-warning"></i>
+                        </span>
+                    </div> -->
 
                     <!-- 썸네일 위 오버레이 아이콘 (우측 상단) -->
                     <div class="position-absolute top-0 end-0 p-2">
@@ -192,9 +210,7 @@
 
                 <div class="card-body">
                     <h5 class="card-title mb-2">
-                        <!-- 고정글이면 아이콘만 -->
-                        <i class="bi bi-pin-angle-fill me-1 text-warning"></i>
-                        샘플 게시글 제목
+                        샘플 게시글 제목2
                     </h5>
 
                     <p class="card-text text-muted mb-0">
@@ -218,17 +234,22 @@
             <div class="card h-100 shadow-sm position-relative">
 
                 <!-- 썸네일이 없을 때만 나오는 header -->
-                <div class="card-header d-flex justify-content-end gap-2 small text-muted">
-                    <span><i class="bi bi-eye"></i> 123</span>
-                    <span><i class="bi bi-chat"></i> 4</span>
-                    <span><i class="bi bi-heart"></i> 12</span>
+                <div class="card-header d-flex justify-content-between align-items-center text-muted">
+                    <!-- 좌측: 고정핀 -->
+                    <span><i class="bi bi-pin-angle-fill text-warning small"></i></span>
+
+                    <!-- 우측: 조회/댓글/좋아요 -->
+                    <div class="d-flex gap-2 small">
+                        <span><i class="bi bi-eye"></i> 123</span>
+                        <span><i class="bi bi-chat"></i> 4</span>
+                        <span><i class="bi bi-heart"></i> 12</span>
+                    </div>
                 </div>
+
 
                 <div class="card-body">
                     <h5 class="card-title mb-2">
-                        <!-- 고정글이면 아이콘만 -->
-                        <i class="bi bi-pin-angle-fill me-1 text-warning"></i>
-                        샘플 게시글 제목
+                        샘플 게시글 제목3
                     </h5>
 
                     <p class="card-text text-muted mb-0">
@@ -244,16 +265,64 @@
                     <span>2025-12-20</span>
                 </div>
             </div>
-        </div>
+        </div>        
+
+        <!-- 게시글 카드(썸네일 없음) -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm position-relative">
+
+                <!-- 썸네일이 없을 때만 나오는 header -->
+                <div class="card-header d-flex justify-content-between align-items-center text-muted">
+                    <!-- 좌측: 고정핀 -->
+                    <span><i class="bi bi-pin-angle-fill text-warning small"></i></span>
+
+                    <!-- 우측: 조회/댓글/좋아요 -->
+                    <div class="d-flex gap-2 small">
+                        <span><i class="bi bi-eye"></i> 123</span>
+                        <span><i class="bi bi-chat"></i> 4</span>
+                        <span><i class="bi bi-heart"></i> 12</span>
+                    </div>
+                </div>
 
 
+                <div class="card-body">
+                    <h5 class="card-title mb-2">
+                        샘플 게시글 제목3
+                    </h5>
+
+                    <p class="card-text text-muted mb-0">
+                        썸네일이 없는 글은 제목과 요약 위주로 보여줍니다. 요약은 길면 줄임 처리 예정.
+                    </p>
+
+                    <a href="/read.html?id=2" class="stretched-link" aria-label="게시글로 이동"></a>
+                </div>
+
+                <!-- footer: 1행(닉네임 / 날짜)만 -->
+                <div class="card-footer bg-white d-flex justify-content-between small text-muted">
+                    <span>상준</span>
+                    <span>2025-12-20</span>
+                </div>
+            </div>
+        </div>    
 
     </div>
 
+    <!-- 더보기 영역 -->
+    <div id="postMore" class="text-center mt-4">
 
-    <!-- 게시글이 없을 때 표시할 영역 -->
-    <div id="postEmpty" class="text-center text-muted py-5 d-none">
-        아직 게시글이 없어.
+        <!-- 더보기 버튼 -->
+        <button id="loadMoreBtn" type="button" class="btn btn-outline-secondary btn-sm w-100">
+            <span id="loadMoreText">포스트 더보기</span>
+
+            <!-- 로딩 스피너(기본 숨김, JS로 토글) -->
+            <span id="loadMoreSpinner" class="spinner-border spinner-border-sm ms-2 d-none"
+                role="status" aria-hidden="true"></span>
+        </button>
+
+        <!-- 더 읽을 글이 없을 때 문구(기본 숨김, JS로 토글) -->
+        <div id="noMorePosts" class="text-muted small mt-3 d-none">
+            더 읽을 포스트가 없어요
+        </div>
     </div>
 
 </main>
@@ -392,7 +461,7 @@
 <div class="position-fixed bottom-0 end-0 p-3 d-flex flex-row gap-2" style="z-index: 1050;">
 
     <!-- 글쓰기 버튼 -->
-    <a href="/post-form.html"
+    <a href="/src/main/resources/templates/write.html"
         class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center shadow"
         style="width: 52px; height: 52px;"
         title="글쓰기">
