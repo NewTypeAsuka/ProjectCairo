@@ -118,111 +118,134 @@
 
         <!-- 게시글 카드 -->
         <div class="col-md-6 col-lg-4">
-            <!-- 카드 전체를 링크로 -->
-            <a href="/read.html?id=1" class="text-decoration-none text-dark">
-                <div class="card h-100 shadow-sm post-card">
+            <div class="card h-100 shadow-sm position-relative">
 
-                    <!-- 썸네일 (사진 있는 경우만 렌더링) -->
-                    <img
-                        src="/src/main/resources/static/img/test/프로필_아스카.png"
-                        class="card-img-top"
-                        alt="게시글 썸네일">
+                <!-- 썸네일 영역 -->
+                <div class="position-relative">
+                    <img src="/src/main/resources/static/img/test/프로필_아스카.png" class="card-img-top" alt="게시글 썸네일">
 
-                    <div class="card-body">
-
-                        <!-- 제목 + 고정 아이콘 -->
-                        <h5 class="card-title fw-bold d-flex align-items-center gap-2">
-                            <i class="bi bi-pin-fill text-warning"></i>
-                            샘플 게시글 제목
-                        </h5>
-
-                        <!-- 요약 -->
-                        <p class="card-text text-muted small post-summary">
-                            여기에 게시글 요약이 들어갑니다.
-                            내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
-                        </p>
-                    </div>
-
-                    <!-- FOOTER -->
-                    <div class="card-footer bg-white small text-muted">
-
-                        <!-- 1행: 작성자 / 날짜 -->
-                        <div class="d-flex justify-content-between mb-1">
-                            <span class="fw-medium">상준</span>
-                            <span>2025-12-20</span>
-                        </div>
-
-                        <!-- 2행: 조회수 / 댓글 / 좋아요 -->
-                        <div class="d-flex justify-content-end gap-2 text-muted small">
-                            <span>
+                    <!-- 썸네일 위 오버레이 아이콘 (우측 상단) -->
+                    <div class="position-absolute top-0 end-0 p-2">
+                        <div class="d-flex gap-2 align-items-center px-2 py-1 rounded"
+                            style="background: rgba(255,255,255,0.85);">
+                            <span class="small text-muted">
                                 <i class="bi bi-eye"></i> 123
                             </span>
-                            <span>
+                            <span class="small text-muted">
                                 <i class="bi bi-chat"></i> 4
                             </span>
-                            <span>
+                            <span class="small text-muted">
                                 <i class="bi bi-heart"></i> 12
                             </span>
                         </div>
-
                     </div>
                 </div>
-            </a>
+
+                <div class="card-body">
+                    <h5 class="card-title mb-2">
+                        <!-- 고정글이면 아이콘만 -->
+                        <i class="bi bi-pin-angle-fill me-1 text-warning"></i>
+                        샘플 게시글 제목
+                    </h5>
+
+                    <p class="card-text text-muted mb-0">
+                        여기에 게시글 요약이 들어갑니다. 내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
+                    </p>
+
+                    <!-- 카드 전체 클릭(뷰어) -->
+                    <a href="/read.html?id=1" class="stretched-link" aria-label="게시글로 이동"></a>
+                </div>
+
+                <!-- footer: 1행(닉네임 / 날짜)만 -->
+                <div class="card-footer bg-white d-flex justify-content-between small text-muted">
+                    <span>상준</span>
+                    <span>2025-12-20</span>
+                </div>
+            </div>
         </div>
+
 
         <!-- 게시글 카드 -->
         <div class="col-md-6 col-lg-4">
-            <!-- 카드 전체를 링크로 -->
-            <a href="/read.html?id=1" class="text-decoration-none text-dark">
-                <div class="card h-100 shadow-sm post-card">
+            <div class="card h-100 shadow-sm position-relative">
 
-                    <!-- 썸네일 (사진 있는 경우만 렌더링) -->
-                    <img
-                        src="/src/main/resources/static/img/test/디시자짤.jpg"
-                        class="card-img-top"
-                        alt="게시글 썸네일">
+                <!-- 썸네일 영역 -->
+                <div class="position-relative">
+                    <img src="/src/main/resources/static/img/test/디시자짤.jpg" class="card-img-top" alt="게시글 썸네일">
 
-                    <div class="card-body">
-
-                        <!-- 제목 + 고정 아이콘 -->
-                        <h5 class="card-title fw-bold d-flex align-items-center gap-2">
-                            <i class="bi bi-pin-fill text-warning"></i>
-                            샘플 게시글 제목
-                        </h5>
-
-                        <!-- 요약 -->
-                        <p class="card-text text-muted small post-summary">
-                            여기에 게시글 요약이 들어갑니다.
-                            내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
-                        </p>
-                    </div>
-
-                    <!-- FOOTER -->
-                    <div class="card-footer bg-white small text-muted">
-
-                        <!-- 1행: 작성자 / 날짜 -->
-                        <div class="d-flex justify-content-between mb-1">
-                            <span class="fw-medium">상준</span>
-                            <span>2025-12-20</span>
-                        </div>
-
-                        <!-- 2행: 조회수 / 댓글 / 좋아요 -->
-                        <div class="d-flex justify-content-end gap-2 text-muted small">
-                            <span>
+                    <!-- 썸네일 위 오버레이 아이콘 (우측 상단) -->
+                    <div class="position-absolute top-0 end-0 p-2">
+                        <div class="d-flex gap-2 align-items-center px-2 py-1 rounded"
+                            style="background: rgba(255,255,255,0.85);">
+                            <span class="small text-muted">
                                 <i class="bi bi-eye"></i> 123
                             </span>
-                            <span>
+                            <span class="small text-muted">
                                 <i class="bi bi-chat"></i> 4
                             </span>
-                            <span>
+                            <span class="small text-muted">
                                 <i class="bi bi-heart"></i> 12
                             </span>
                         </div>
-
                     </div>
                 </div>
-            </a>
+
+                <div class="card-body">
+                    <h5 class="card-title mb-2">
+                        <!-- 고정글이면 아이콘만 -->
+                        <i class="bi bi-pin-angle-fill me-1 text-warning"></i>
+                        샘플 게시글 제목
+                    </h5>
+
+                    <p class="card-text text-muted mb-0">
+                        여기에 게시글 요약이 들어갑니다. 내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
+                    </p>
+
+                    <!-- 카드 전체 클릭(뷰어) -->
+                    <a href="/read.html?id=1" class="stretched-link" aria-label="게시글로 이동"></a>
+                </div>
+
+                <!-- footer: 1행(닉네임 / 날짜)만 -->
+                <div class="card-footer bg-white d-flex justify-content-between small text-muted">
+                    <span>상준</span>
+                    <span>2025-12-20</span>
+                </div>
+            </div>
         </div>
+
+        <!-- 게시글 카드(썸네일 없음) -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm position-relative">
+
+                <!-- 썸네일이 없을 때만 나오는 header -->
+                <div class="card-header d-flex justify-content-end gap-2 small text-muted">
+                    <span><i class="bi bi-eye"></i> 123</span>
+                    <span><i class="bi bi-chat"></i> 4</span>
+                    <span><i class="bi bi-heart"></i> 12</span>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title mb-2">
+                        <!-- 고정글이면 아이콘만 -->
+                        <i class="bi bi-pin-angle-fill me-1 text-warning"></i>
+                        샘플 게시글 제목
+                    </h5>
+
+                    <p class="card-text text-muted mb-0">
+                        썸네일이 없는 글은 제목과 요약 위주로 보여줍니다. 요약은 길면 줄임 처리 예정.
+                    </p>
+
+                    <a href="/read.html?id=2" class="stretched-link" aria-label="게시글로 이동"></a>
+                </div>
+
+                <!-- footer: 1행(닉네임 / 날짜)만 -->
+                <div class="card-footer bg-white d-flex justify-content-between small text-muted">
+                    <span>상준</span>
+                    <span>2025-12-20</span>
+                </div>
+            </div>
+        </div>
+
 
 
     </div>
