@@ -83,63 +83,47 @@
 
 <!-- ===== MAIN ===== -->
 <main class="container py-4">
-
+    
     <!-- 헤더 -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex flex-wrap align-items-start mb-4">
+
+        <!-- 좌측: 제목 영역 -->
         <div class="mb-3">
             <h1 class="h4 fw-bold mb-1">포스트</h1>
             <div class="text-secondary small">순간과 생각의 기록입니다.</div>
         </div>
 
-        <!-- 우측 액션 영역 -->
-        <div class="d-flex align-items-center gap-2 flex-wrap">
+        <!-- 우측: 액션 영역 -->
+        <div class="d-flex align-items-center gap-2 flex-wrap ms-auto justify-content-end">
 
             <!-- 태그 선택자 -->
             <div class="dropdown">
                 <button class="btn btn-outline-secondary btn-sm dropdown-toggle"
                         type="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                        data-bs-toggle="dropdown">
                     태그
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><button class="dropdown-item" type="button" data-tag="all">전체</button></li>
-                    <li><button class="dropdown-item" type="button" data-tag="essay">에세이</button></li>
-                    <li><button class="dropdown-item" type="button" data-tag="dev">개발</button></li>
-                    <li><button class="dropdown-item" type="button" data-tag="thought">생각</button></li>
-                    <li><button class="dropdown-item" type="button" data-tag="review">리뷰</button></li>
+                    <li><button class="dropdown-item">전체</button></li>
+                    <li><button class="dropdown-item">에세이</button></li>
+                    <li><button class="dropdown-item">개발</button></li>
                 </ul>
             </div>
 
-            <!-- 검색 입력창 (기본 접힘) -->
-            <div class="collapse" id="searchCollapse">
-                <form class="d-flex" role="search">
-                    <input class="form-control form-control-sm"
-                            type="search"
-                            placeholder="제목 검색"
-                            aria-label="제목 검색">
-                </form>
-            </div>
-
-            <!-- 돋보기 버튼 -->
-            <button class="btn btn-outline-secondary btn-sm d-flex align-items-center justify-content-center"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#searchCollapse"
-                    aria-expanded="false"
-                    aria-controls="searchCollapse"
-                    title="검색">
+            <!-- 검색 -->
+            <button class="btn btn-outline-secondary btn-sm">
                 <i class="bi bi-search"></i>
             </button>
 
-            <!-- 글쓰기 버튼 -->
+            <!-- 글쓰기 -->
             <a href="/src/main/resources/templates/write.html"
-                class="btn btn-primary btn-sm">
+            class="btn btn-primary btn-sm">
                 글쓰기
             </a>
         </div>
 
     </div>
+
 
     <!-- 게시글 목록 -->
     <div id="postList" class="row g-4">
