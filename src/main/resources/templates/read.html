@@ -256,17 +256,41 @@
 
         <!-- 댓글 작성 -->
         <form>
+
+            <!-- 비회원용 정보 입력 (로그인 안 했을 때만 노출) -->
+            <div class="row g-2 mb-2" id="guestCommentInfo">
+                <div class="col-6 col-md-3">
+                    <input type="text"
+                        class="form-control form-control-sm"
+                        placeholder="닉네임"
+                        name="guestNickname"
+                        maxlength="20">
+                </div>
+                <div class="col-6 col-md-3">
+                    <input type="password"
+                        class="form-control form-control-sm"
+                        placeholder="비밀번호(숫자 4자리)"
+                        name="guestPassword"
+                        maxlength="4">
+                </div>
+            </div>
+            <!-- 댓글 내용 -->
             <div class="mb-3">
                 <textarea class="form-control"
-                            rows="3"
-                            placeholder="댓글을 입력하세요"></textarea>
+                        rows="3"
+                        placeholder="댓글을 입력하세요"
+                        name="commentContent"></textarea>
             </div>
+
+            <!-- 등록 버튼 -->
             <div class="text-end">
                 <button type="submit" class="btn btn-primary btn-sm">
                     댓글 등록
                 </button>
             </div>
+
         </form>
+
 
     </section>
 

@@ -97,7 +97,7 @@
         <div class="d-flex align-items-center gap-2 flex-wrap ms-auto justify-content-end">
 
             <!-- 데스크톱(md 이상): 드롭다운 -->
-            <div class="dropdown d-none d-md-inline-flex">
+            <!-- <div class="dropdown d-none d-md-inline-flex">
                 <button class="btn btn-outline-secondary btn-sm"
                         type="button"
                         data-bs-toggle="dropdown"
@@ -107,9 +107,7 @@
                 </button>
 
                 <div class="dropdown-menu dropdown-menu-end p-3" style="min-width: 420px;">
-                    <!-- 🔽 필터 UI (공용 마크업) -->
                     <div class="row g-3">
-                        <!-- 좌측: 언어 -->
                         <div class="col-6">
                             <div class="fw-bold mb-2">언어</div>
 
@@ -140,7 +138,6 @@
                             </button>
                         </div>
 
-                        <!-- 우측: 태그 -->
                         <div class="col-6">
                             <div class="fw-bold mb-2">태그</div>
 
@@ -173,15 +170,15 @@
                     </div>
 
                 </div>
-            </div>
+            </div> -->
 
             <!-- 모바일(sm 이하): 모달 -->
-            <button class="btn btn-outline-secondary btn-sm d-inline-flex d-md-none"
+            <!-- <button class="btn btn-outline-secondary btn-sm d-inline-flex d-md-none"
                     type="button"
                     data-bs-toggle="modal"
                     data-bs-target="#filterModal">
                 <i class="bi bi-funnel"></i>
-            </button>
+            </button> -->
 
             <!-- 글쓰기 -->
             <a href="/src/main/resources/templates/write.html" class="btn btn-primary btn-sm">
@@ -204,6 +201,9 @@
                 <div class="card-header bg-white d-flex justify-content-between align-items-center small text-muted">
                     <span>
                         <i class="bi bi-pin-angle-fill text-warning"></i>
+                        <i class="bi bi-lock-fill text-secondary"></i>
+                    </span>
+                    <span>
                     </span>
                     <div class="d-flex gap-2">
                         <span><i class="bi bi-eye"></i> 123</span>
@@ -249,7 +249,7 @@
                 <!-- 공통 Header -->
                 <div class="card-header bg-white d-flex justify-content-between align-items-center small text-muted">
                     <span>
-                        <i class="bi bi-pin-angle-fill text-warning"></i>
+                        <i class="bi bi-lock-fill text-secondary"></i>
                     </span>
                     <div class="d-flex gap-2">
                         <span><i class="bi bi-eye"></i> 123</span>
@@ -433,7 +433,7 @@
 </div>
 
 <!-- 검색 모달 -->
-<div class="modal fade" id="filterModal" tabindex="-1" aria-hidden="true">
+<!-- <div class="modal fade" id="filterModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
 
@@ -444,9 +444,9 @@
             </div>
 
             <div class="modal-body">
-                <!-- 🔽 필터 UI (공용 마크업) -->
+
                 <div class="row g-3">
-                    <!-- 좌측: 언어 -->
+
                     <div class="col-6">
                         <div class="fw-bold mb-2">언어</div>
 
@@ -477,7 +477,7 @@
                         </button>
                     </div>
 
-                    <!-- 우측: 태그 -->
+
                     <div class="col-6">
                         <div class="fw-bold mb-2">태그</div>
 
@@ -513,7 +513,7 @@
 
         </div>
     </div>
-</div>
+</div> -->
 
 
 <!-- ===== FLOATING BUTTONS AREA ===== -->
