@@ -128,41 +128,131 @@
 
         <!-- 댓글 목록 -->
         <ul class="list-group mb-4">
+
+            <!-- ✅ 댓글 #1 (대댓글 2개 달린 상태) -->
             <li class="list-group-item">
-                <!-- 상단 줄: 왼쪽 유저명 / 오른쪽 삭제 -->
+
+                <!-- 댓글 헤더 -->
                 <div class="d-flex justify-content-between align-items-start">
                     <div class="fw-bold">user1</div>
 
-                    <button type="button"
-                            class="btn btn-link p-0 text-muted"
-                            aria-label="댓글 삭제"
-                            title="삭제">
-                        <i class="bi bi-trash"></i>
-                    </button>
+                    <div class="d-flex gap-2">
+                        <!-- 답글 버튼(UI용) -->
+                        <button type="button"
+                                class="btn btn-link p-0 text-muted"
+                                aria-label="답글"
+                                title="답글">
+                            <i class="bi bi-reply"></i>
+                        </button>
+
+                        <!-- 삭제 -->
+                        <button type="button"
+                                class="btn btn-link p-0 text-muted"
+                                aria-label="댓글 삭제"
+                                title="삭제">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="small text-muted mb-1">2025-01-01</div>
-                <div>댓글 내용입니다.</div>
+                <div class="mb-3">댓글 내용입니다. (여기에 본문 코멘트)</div>
+
+                <!-- ✅ 대댓글 영역(1단계만) -->
+                <div class="ms-3 ps-3 border-start">
+
+                    <!-- 대댓글 #1-1 -->
+                    <div class="py-2">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="fw-bold small">
+                                admin <span class="badge text-bg-light border ms-1">답글</span>
+                            </div>
+
+                            <button type="button"
+                                    class="btn btn-link p-0 text-muted"
+                                    aria-label="대댓글 삭제"
+                                    title="삭제">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+
+                        <div class="small text-muted mb-1">2025-01-01</div>
+                        <div class="small">좋은 의견 고마워요. 이 부분은 다음 버전에 반영할게요.</div>
+                    </div>
+
+                    <!-- 대댓글 #1-2 -->
+                    <div class="py-2">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="fw-bold small">
+                                user2 <span class="badge text-bg-light border ms-1">답글</span>
+                            </div>
+
+                            <button type="button"
+                                    class="btn btn-link p-0 text-muted"
+                                    aria-label="대댓글 삭제"
+                                    title="삭제">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+
+                        <div class="small text-muted mb-1">2025-01-02</div>
+                        <div class="small">저도 같은 생각! 특히 모바일 UI에서 좋아질 듯.</div>
+                    </div>
+
+                </div>
             </li>
 
+            <!-- ✅ 댓글 #2 (대댓글 1개 달린 상태) -->
             <li class="list-group-item">
-                <!-- 상단 줄: 왼쪽 유저명 / 오른쪽 삭제 -->
-                <div class="d-flex justify-content-between align-items-start">
-                    <div class="fw-bold">user1</div>
 
-                    <button type="button"
-                            class="btn btn-link p-0 text-muted"
-                            aria-label="댓글 삭제"
-                            title="삭제">
-                        <i class="bi bi-trash"></i>
-                    </button>
+                <!-- 댓글 헤더 -->
+                <div class="d-flex justify-content-between align-items-start">
+                    <div class="fw-bold">user3</div>
+
+                    <div class="d-flex gap-2">
+                        <button type="button"
+                                class="btn btn-link p-0 text-muted"
+                                aria-label="답글"
+                                title="답글">
+                            <i class="bi bi-reply"></i>
+                        </button>
+
+                        <button type="button"
+                                class="btn btn-link p-0 text-muted"
+                                aria-label="댓글 삭제"
+                                title="삭제">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
                 </div>
 
-                <div class="small text-muted mb-1">2025-01-01</div>
-                <div>댓글 내용입니다.</div>
+                <div class="small text-muted mb-1">2025-01-03</div>
+                <div class="mb-3">두 번째 댓글입니다. (대댓글 테스트)</div>
+
+                <!-- 대댓글 영역 -->
+                <div class="ms-3 ps-3 border-start">
+                    <div class="py-2">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="fw-bold small">
+                                admin <span class="badge text-bg-light border ms-1">답글</span>
+                            </div>
+
+                            <button type="button"
+                                    class="btn btn-link p-0 text-muted"
+                                    aria-label="대댓글 삭제"
+                                    title="삭제">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+
+                        <div class="small text-muted mb-1">2025-01-03</div>
+                        <div class="small">확인했어. 이 건은 TODO로 남겨둘게.</div>
+                    </div>
+                </div>
             </li>
 
         </ul>
+
 
         <!-- 댓글 작성 -->
         <form>
