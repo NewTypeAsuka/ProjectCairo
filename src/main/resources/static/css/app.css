@@ -18,3 +18,8 @@ body {
     overflow-y: scroll;
 }
 
+/* 태그 배지 영역 */
+#tagBadgeArea {
+    max-height: 24px;        /* badge 1줄 높이 */
+    align-items: center;
+}
