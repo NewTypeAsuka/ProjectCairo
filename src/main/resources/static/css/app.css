@@ -18,88 +18,79 @@ body {
     overflow-y: scroll;
 }
 
-/* 태그 공간 확보 */
-/* 태그 영역 전체 박스 */
+/* =========================
+   TAG UI
+   ========================= */
+
+/* 태그 영역 전체 박스(회색 고정 영역) */
 #tagBadgeWrapper {
-    background: #f8f9fa;          /* 연한 회색 */
+    background: #f8f9fa;
     border: 1px dashed #dee2e6;
-    border-radius: 6px;
-    padding: 8px;
-    min-height: 44px;             /* 항상 공간 확보 */
+    border-radius: 8px;
+    padding: 10px;
 }
-/* 태그 뱃지 영역 */
+
+/* 뱃지 영역: 여기 높이를 고정해서 흔들림 방지 */
 #tagBadgeArea {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
+    min-height: 34px; /* ✅ 뱃지 없을 때도 공간 유지 */
+    align-content: flex-start;
 }
+#tagWarapperBar {
+    border: none;
+    border-top: 1px dashed #dee2e6;
+    margin: 8px 0 6px;
+    opacity: 0.8;
+}
+
+
+/* 안내/경고 문구는 badgeArea가 아니라 tagHint에만 */
+#tagHint {
+    font-size: 12px;
+    line-height: 1.2;
+    margin-top: 6px;
+}
+
 /* 태그 뱃지 */
 .tag-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     max-width: 100%;
-    padding: 2px 8px;
+    padding: 2px 10px;
     border: 1px solid #dee2e6;
     border-radius: 999px;
     background: #fff;
 }
+
 /* 태그 텍스트 말줄임 */
 .tag-badge .tag-text {
-    max-width: 160px;
+    display: inline-block;
+    max-width: 180px; /* 모바일 깨짐 방지 */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 /* 모바일에서 더 짧게 */
 @media (max-width: 576px) {
     .tag-badge .tag-text {
         max-width: 120px;
     }
 }
-/* X 버튼 고정 */
+
+/* X 버튼 */
 .tag-badge .tag-remove {
     flex: 0 0 auto;
-}
-/* 회색 고정 영역 */
-#tagBadgeArea.tag-area{
-    background: #f8f9fa;
-    border: 1px dashed #dee2e6;
-    border-radius: 8px;
-    padding: 10px;
-    min-height: 46px; /* 흔들림 방지 */
-}
-
-/* 안내 문구 */
-#tagBadgeArea .tag-hint{
-    font-size: 12px;
+    border: none;
+    background: transparent;
+    padding: 0 2px;
+    line-height: 1;
+    cursor: pointer;
     color: #6c757d;
 }
-
-/* 뱃지 줄 */
-#tagBadgeArea .tag-badge-row{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 8px;
-}
-
-/* 뱃지 내부: 텍스트는 ... 처리, X는 고정 노출 */
-#tagBadgeArea .tag-badge{
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    max-width: 100%;
-}
-
-#tagBadgeArea .tag-text{
-    display: inline-block;
-    max-width: 180px; /* 모바일 깨짐 방지 (필요하면 조절) */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-#tagBadgeArea .tag-remove{
-    flex: 0 0 auto;
+.tag-badge .tag-remove:hover {
+    color: #212529;
 }
