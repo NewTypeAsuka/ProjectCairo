@@ -58,12 +58,12 @@
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                             id="langToggleBtn">
-                        한국어 🇰🇷
+                        한국어 <img src="/src/main/resources/static/img/flag/kr.svg" width="16" />
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><button class="dropdown-item" type="button" data-lang="ko">한국어 🇰🇷</button></li>
-                        <li><button class="dropdown-item" type="button" data-lang="ja">日本語 🇯🇵</button></li>
-                        <li><button class="dropdown-item" type="button" data-lang="en">English 🇺🇸</button></li>
+                        <li><button class="dropdown-item" type="button" data-lang="ko">한국어 <img src="/src/main/resources/static/img/flag/kr.svg" width="16" /></button></li>
+                        <li><button class="dropdown-item" type="button" data-lang="ja">日本語 <img src="/src/main/resources/static/img/flag/jp.svg" width="16" /></button></li>
+                        <li><button class="dropdown-item" type="button" data-lang="en">English <img src="/src/main/resources/static/img/flag/en.svg" width="16" /></button></li>
                     </ul>
                 </li>
 
@@ -96,31 +96,99 @@
         <!-- 우측: 액션 영역 -->
         <div class="d-flex align-items-center gap-2 flex-wrap ms-auto justify-content-end">
 
-            <!-- 태그 선택자 -->
-            <div class="dropdown">
-                <button class="btn btn-outline-secondary btn-sm dropdown-toggle"
+            <!-- 데스크톱(md 이상): 드롭다운 -->
+            <div class="dropdown d-none d-md-inline-flex">
+                <button class="btn btn-outline-secondary btn-sm"
                         type="button"
-                        data-bs-toggle="dropdown">
-                    태그
+                        data-bs-toggle="dropdown"
+                        data-bs-auto-close="outside"
+                        aria-expanded="false">
+                    <i class="bi bi-funnel"></i>
                 </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><button class="dropdown-item">전체</button></li>
-                    <li><button class="dropdown-item">에세이</button></li>
-                    <li><button class="dropdown-item">개발</button></li>
-                </ul>
+
+                <div class="dropdown-menu dropdown-menu-end p-3" style="min-width: 420px;">
+                    <!-- 🔽 필터 UI (공용 마크업) -->
+                    <div class="row g-3">
+                        <!-- 좌측: 언어 -->
+                        <div class="col-6">
+                            <div class="fw-bold mb-2">언어</div>
+
+                            <div class="form-check mb-1">
+                                <input class="form-check-input" type="checkbox" value="ko" id="langKo">
+                                <label class="form-check-label" for="langKo">
+                                    한국어 <img src="/src/main/resources/static/img/flag/kr.svg" width="16" />
+                                </label>
+                            </div>
+
+                            <div class="form-check mb-1">
+                                <input class="form-check-input" type="checkbox" value="jp" id="langJp">
+                                <label class="form-check-label" for="langJp">
+                                    日本語 <img src="/src/main/resources/static/img/flag/jp.svg" width="16" />
+                                </label>
+                            </div>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" value="en" id="langEn">
+                                <label class="form-check-label" for="langEn">
+                                    English <img src="/src/main/resources/static/img/flag/en.svg" width="16" />
+                                </label>
+                            </div>
+
+                            <button id="filterResetBtn" type="button"
+                                    class="btn btn-outline-secondary btn-sm w-100">
+                                초기화
+                            </button>
+                        </div>
+
+                        <!-- 우측: 태그 -->
+                        <div class="col-6">
+                            <div class="fw-bold mb-2">태그</div>
+
+                            <div class="form-check mb-1">
+                                <input class="form-check-input" type="checkbox" value="essay" id="tagEssay">
+                                <label class="form-check-label" for="tagEssay">에세이</label>
+                            </div>
+
+                            <div class="form-check mb-1">
+                                <input class="form-check-input" type="checkbox" value="dev" id="tagDev">
+                                <label class="form-check-label" for="tagDev">개발</label>
+                            </div>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" value="daily" id="tagDaily">
+                                <label class="form-check-label" for="tagDaily">일상</label>
+                            </div>
+
+                            <button id="filterSearchBtn" type="button"
+                                    class="btn btn-primary btn-sm w-100">
+                                검색
+                            </button>
+                        </div>
+
+                        <div class="col-12">
+                            <div id="filterHint" class="small text-muted text-center mt-1">
+                                최소 하나 이상의 언어 혹은 태그를 선택해주세요
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
-            <!-- 검색 -->
-            <button class="btn btn-outline-secondary btn-sm">
-                <i class="bi bi-search"></i>
+            <!-- 모바일(sm 이하): 모달 -->
+            <button class="btn btn-outline-secondary btn-sm d-inline-flex d-md-none"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#filterModal">
+                <i class="bi bi-funnel"></i>
             </button>
 
             <!-- 글쓰기 -->
-            <a href="/src/main/resources/templates/write.html"
-            class="btn btn-primary btn-sm">
+            <a href="/src/main/resources/templates/write.html" class="btn btn-primary btn-sm">
                 글쓰기
             </a>
         </div>
+
 
     </div>
 
@@ -327,6 +395,7 @@
 
 <!-- ===== MODALS AREA ===== -->
 
+<!-- 로그인 모달 -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -362,6 +431,90 @@
         </div>
     </div>
 </div>
+
+<!-- 검색 모달 -->
+<div class="modal fade" id="filterModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">필터</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <!-- 🔽 필터 UI (공용 마크업) -->
+                <div class="row g-3">
+                    <!-- 좌측: 언어 -->
+                    <div class="col-6">
+                        <div class="fw-bold mb-2">언어</div>
+
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" value="ko" id="langKo">
+                            <label class="form-check-label" for="langKo">
+                                한국어 <img src="/src/main/resources/static/img/flag/kr.svg" width="16" />
+                            </label>
+                        </div>
+
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" value="jp" id="langJp">
+                            <label class="form-check-label" for="langJp">
+                                日本語 <img src="/src/main/resources/static/img/flag/jp.svg" width="16" />
+                            </label>
+                        </div>
+
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" value="en" id="langEn">
+                            <label class="form-check-label" for="langEn">
+                                English <img src="/src/main/resources/static/img/flag/en.svg" width="16" />
+                            </label>
+                        </div>
+
+                        <button id="filterResetBtn" type="button"
+                                class="btn btn-outline-secondary btn-sm w-100">
+                            초기화
+                        </button>
+                    </div>
+
+                    <!-- 우측: 태그 -->
+                    <div class="col-6">
+                        <div class="fw-bold mb-2">태그</div>
+
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" value="essay" id="tagEssay">
+                            <label class="form-check-label" for="tagEssay">에세이</label>
+                        </div>
+
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" value="dev" id="tagDev">
+                            <label class="form-check-label" for="tagDev">개발</label>
+                        </div>
+
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" value="daily" id="tagDaily">
+                            <label class="form-check-label" for="tagDaily">일상</label>
+                        </div>
+
+                        <button id="filterSearchBtn" type="button"
+                                class="btn btn-primary btn-sm w-100">
+                            검색
+                        </button>
+                    </div>
+
+                    <div class="col-12">
+                        <div id="filterHint" class="small text-muted text-center mt-1">
+                            최소 하나 이상의 언어 혹은 태그를 선택해주세요
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
 <!-- ===== FLOATING BUTTONS AREA ===== -->
 <div class="position-fixed bottom-0 end-0 p-3 d-flex flex-row gap-2" 
