@@ -1,0 +1,17 @@
+# pom.xml로 무엇을 쓸지 템플릿을 결정했다면
+# application.yml은 어떻게 돌릴지 결정
+
+server:
+  port: 8080
+
+spring:
+  thymeleaf:
+    cache: false   # 개발 중 템플릿 캐시 끔
+  devtools:
+    restart:
+      enabled: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
