@@ -121,26 +121,29 @@
 
         <!-- 태그 -->
         <div class="mb-3">
+            <label for="postTags" class="form-label">
+                <h5 class="mb-1">태그</h5>
+            </label>
 
-            <!-- ✅ 태그 제목 + 뱃지 (왼쪽부터 연속 배치) -->
-            <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
-                <h5 class="mb-0">태그</h5>
-
-                <!-- 뱃지 영역 -->
-                <div id="tagBadgeArea" class="d-flex flex-wrap gap-1"></div>
-            </div>
-
-            <!-- 입력창 -->
             <input type="text"
                 class="form-control"
-                id="postTagInput"
-                placeholder="#태그명 입력 후 스페이스"
+                id="postTags"
+                name="tagsInput"
+                placeholder="#태그명 입력 후 스페이스바 또는 엔터"
                 maxlength="120"
                 autocomplete="off">
 
-            <!-- 실제 submit에 넣을 hidden -->
+            <!-- ✅ 태그 고정 영역 -->
+            <div id="tagBadgeWrapper" class="mt-2">
+                <div id="tagBadgeArea"></div>
+                <div id="tagHint" class="small text-muted mt-1">
+                    최대 2개까지 입력 가능 (#태그명 후 스페이스/엔터)
+                </div>
+            </div>
+
             <input type="hidden" id="postTagsHidden" name="tags" value="">
         </div>
+
 
         <!-- 하단 버튼 -->
         <div class="d-flex justify-content-end gap-2">
@@ -203,157 +206,125 @@
     });
 </script>
 
-<!-- 태그 입력/렌더링 스크립트 -->
-<script>
-    const MAX_TAGS = 10;
+<!-- 태그 관련 -->
+ <script>
+    // ===== TAG UI (gray fixed area) =====
+    (function () {
+        const tagInput = document.getElementById('postTags');
+        const badgeArea = document.getElementById('tagBadgeArea');
+        const hiddenInput = document.getElementById('postTagsHidden');
 
-    function normalizeTag(raw) {
-        let t = (raw || '').trim();
+        if (!tagInput || !badgeArea || !hiddenInput) return;
 
-        // 구분자 제거(마지막에 붙는 , 공백 등)
-        t = t.replace(/[,\s]+$/g, '');
+        const MAX_TAGS = 2;
+        let tags = [];
 
-        if (!t) return '';
+        // 회색 영역 내부에 "안내문구" + "뱃지 컨테이너"를 고정 생성
+        badgeArea.classList.add('tag-area'); // (원하면 CSS에서 사용)
+        badgeArea.innerHTML = `
+            <div id="tagHint" class="tag-hint">최대 2개까지 입력 가능 (#태그명 후 스페이스/엔터)</div>
+            <div id="tagBadgeRow" class="tag-badge-row"></div>
+        `;
 
-        // # 자동 보정
-        if (!t.startsWith('#')) t = '#' + t;
+        const hintEl = badgeArea.querySelector('#tagHint');
+        const rowEl = badgeArea.querySelector('#tagBadgeRow');
 
-        // 태그에 공백/특수구분자 들어가면 정리(원하면 규칙 더 엄격하게)
-        t = t.replace(/\s+/g, '');
-
-        // 너무 짧으면 무시
-        if (t.length < 2) return '';
-
-        return t;
-    }
-
-    function getTags() {
-        const v = $('#postTagsHidden').val().trim();
-        if (!v) return [];
-        try {
-            return JSON.parse(v);
-        } catch (e) {
-            return [];
+        function setHint(msg, isError) {
+            hintEl.textContent = msg;
+            hintEl.classList.toggle('text-danger', !!isError);
         }
-    }
 
-    function setTags(tags) {
-        $('#postTagsHidden').val(JSON.stringify(tags));
-    }
+        function normalizeTag(raw) {
+            if (!raw) return '';
+            let t = raw.trim();
 
-    function renderTags() {
-        const tags = getTags();
-        const $area = $('#tagBadgeArea');
-        $area.empty();
+            // 앞의 # 제거
+            t = t.replace(/^#+/, '').trim();
 
-        tags.forEach((tag) => {
-            const $badge = $(`
-                <span class="badge text-bg-light border">
-                    <span class="me-1">${tag}</span>
-                    <button type="button"
-                            class="btn-close"
-                            aria-label="Remove"
-                            style="font-size: 0.65rem; vertical-align: middle;"></button>
-                </span>
-            `);
+            // 공백/구분자 제거(기본), 허용문자만 남김: 한글/영문/숫자/_/-
+            t = t.replace(/[^\p{Script=Hangul}A-Za-z0-9_-]/gu, '');
 
-            $badge.find('.btn-close').on('click', function () {
-                removeTag(tag);
+            return t;
+        }
+
+        function syncHidden() {
+            hiddenInput.value = tags.join(',');
+        }
+
+        function render() {
+            rowEl.innerHTML = '';
+
+            tags.forEach((t) => {
+                const badge = document.createElement('span');
+                badge.className = 'badge text-bg-light border tag-badge';
+                badge.setAttribute('data-tag', t);
+
+                // ✅ 긴 태그여도 X 버튼이 항상 보이도록: 텍스트/버튼을 분리
+                badge.innerHTML = `
+                    <span class="tag-text">#${t}</span>
+                    <button type="button" class="btn-close btn-close-sm tag-remove" aria-label="Remove"></button>
+                `;
+
+                badge.querySelector('.tag-remove').addEventListener('click', () => {
+                    tags = tags.filter(x => x !== t);
+                    render();
+                    setHint('최대 2개까지 입력 가능 (#태그명 후 스페이스/엔터)', false);
+                });
+
+                rowEl.appendChild(badge);
             });
 
-            $area.append($badge);
-        });
-    }
-
-    function addTag(raw) {
-        const tag = normalizeTag(raw);
-        if (!tag) return;
-
-        let tags = getTags();
-
-        // 최대 개수
-        if (tags.length >= MAX_TAGS) {
-            alert(`태그는 최대 ${MAX_TAGS}개까지 가능해.`);
-            return;
+            syncHidden();
         }
 
-        // 중복 방지(대소문자 무시하려면 toLowerCase 비교로 바꿔도 됨)
-        if (tags.includes(tag)) return;
+        function tryAddTag(raw) {
+            const t = normalizeTag(raw);
+            if (!t) return;
 
-        tags.push(tag);
-        setTags(tags);
-        renderTags();
-    }
-
-    function removeTag(tag) {
-        let tags = getTags();
-        tags = tags.filter(t => t !== tag);
-        setTags(tags);
-        renderTags();
-    }
-
-    $(document).ready(function () {
-        // 최초 렌더
-        setTags([]);
-        renderTags();
-
-        // 스페이스/엔터/쉼표로 태그 확정
-        $('#postTagInput').on('keydown', function (e) {
-            const key = e.key;
-
-            // 확정 트리거
-            if (key === ' ' || key === 'Enter' || key === ',') {
-                e.preventDefault();
-                const val = $(this).val();
-                addTag(val);
-                $(this).val('');
+            if (tags.includes(t)) {
+                setHint('이미 추가된 태그야.', true);
+                return;
+            }
+            if (tags.length >= MAX_TAGS) {
+                setHint('태그는 최대 2개까지만 가능해.', true);
                 return;
             }
 
-            // 입력 비었고 Backspace면 마지막 태그 삭제
-            if (key === 'Backspace' && $(this).val().trim() === '') {
-                const tags = getTags();
-                if (tags.length > 0) {
-                    removeTag(tags[tags.length - 1]);
-                }
+            tags.push(t);
+            render();
+            setHint('최대 2개까지 입력 가능 (#태그명 후 스페이스/엔터)', false);
+        }
+
+        // 스페이스/엔터로 태그 확정
+        tagInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                tryAddTag(tagInput.value);
+                tagInput.value = '';
+                return;
+            }
+
+            // 입력이 비어있을 때 백스페이스 => 마지막 태그 삭제(편의)
+            if (e.key === 'Backspace' && tagInput.value === '' && tags.length > 0) {
+                tags.pop();
+                render();
             }
         });
 
-        // 붙여넣기 지원: "#a #b #c" 같은 걸 붙이면 자동 분리해서 추가
-        $('#postTagInput').on('paste', function (e) {
-            const clipboard = (e.originalEvent || e).clipboardData;
-            if (!clipboard) return;
+        // 붙여넣기: "#a #b" / "#a,#b" 같은 입력 처리
+        tagInput.addEventListener('paste', (e) => {
+            const text = (e.clipboardData || window.clipboardData).getData('text') || '';
+            const parts = text.split(/[\s,]+/).filter(Boolean);
+            if (parts.length <= 1) return;
 
-            const text = clipboard.getData('text');
-            if (!text) return;
-
-            // 붙여넣기 후 처리하려고 살짝 지연
-            setTimeout(() => {
-                const v = $('#postTagInput').val();
-                // 공백/쉼표 기준으로 분리
-                const parts = v.split(/[\s,]+/g).filter(Boolean);
-                if (parts.length > 1) {
-                    parts.forEach(p => addTag(p));
-                    $('#postTagInput').val('');
-                }
-            }, 0);
-        });
-
-        // submit 시 tags 확인(지금은 콘솔 출력만 하는 단계니까)
-        $('#writeForm').on('submit', function (e) {
             e.preventDefault();
-
-            const title = $('#postTitle').val().trim();
-            const content = $('#editor').summernote('code');
-            const tags = getTags();
-
-            console.log({ title, tags, content });
-
-            alert('임시: 콘솔에 출력했어. (나중에 저장 API 붙이자)');
+            parts.forEach(p => tryAddTag(p));
+            tagInput.value = '';
         });
-    });
-</script>
 
+        render();
+    })();
+</script>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
