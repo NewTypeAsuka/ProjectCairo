@@ -1,6 +1,6 @@
 package com.newtypeblog.projectcairo.controller;
 
-import com.newtypeblog.projectcairo.domain.User;
+import com.newtypeblog.projectcairo.dto.auth.LoginRequest;
 import com.newtypeblog.projectcairo.service.AuthService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.newtypeblog.projectcairo.dto.auth.LoginRequest;
 
 @RestController
 @RequestMapping("/api/auth")

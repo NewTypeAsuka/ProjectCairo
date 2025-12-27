@@ -15,7 +15,7 @@ public class LoginRequest {
     public LoginRequest() {
         // Jackson(JSON->객체 변환) 기본 생성자
     }
-k
+
     public LoginRequest(String userId, String userPw) {
         this.userId = userId;
         this.userPw = userPw;

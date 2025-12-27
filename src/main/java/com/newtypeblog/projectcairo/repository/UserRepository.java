@@ -3,6 +3,7 @@ package com.newtypeblog.projectcairo.repository;
 import com.newtypeblog.projectcairo.domain.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
 @Repository
 public class UserRepository {
@@ -25,7 +26,7 @@ public class UserRepository {
                 USER_BIRTHDAY
             FROM C_USER
             WHERE USER_ID = ?
-              AND USER_STATUS = 'Y'
+                AND USER_STATUS = 'Y'
         """;
 
         return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
@@ -36,7 +37,7 @@ public class UserRepository {
             user.setUserNickname(rs.getString("USER_NICKNAME"));
             user.setUserGrade(rs.getInt("USER_GRADE"));
             user.setUserStatus(rs.getString("USER_STATUS"));
-            user.setUserBirthday(rs.getDate("USER_BIRTHDAY").toLocalDate());
+            user.setUserBirthDay(rs.getDate("USER_BIRTHDAY").toLocalDate());
             return user;
         }, userId);
     }
