@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             // 로그인 API 호출
-            const res = await fetch("/api/auth/login", {
+            const res = await fetch("/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -101,7 +101,7 @@ async function refreshAuthArea() {
 
     try {
         // 현재 로그인 사용자 정보 조회
-        const res = await fetch("/api/auth/me", { method: "GET" });
+        const res = await fetch("/auth/me", { method: "GET" });
         if (!res.ok) return;
 
         const me = await res.json();

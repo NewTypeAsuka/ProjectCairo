@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 public class AuthController {
 
     private final AuthService authService;
@@ -21,7 +21,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<Void> login(@RequestBody LoginRequest req, HttpSession session) {
-        boolean ok = authService.login(req.userId(), req.userPw(), session);
+        boolean ok = authService.login(req.getUserId(), req.getUserPw(), session);
         return ok ? ResponseEntity.ok().build()
                   : ResponseEntity.status(401).build();
     }
