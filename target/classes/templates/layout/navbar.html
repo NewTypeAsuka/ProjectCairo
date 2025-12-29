@@ -4,7 +4,7 @@
 
     <div class="container">
         <a class="navbar-brand fw-bold" th:href="@{/}">
-            NewTypeBlog -- navbar.html
+            NewTypeBlog
         </a>
 
         <!-- 햄버거 버튼 -->
@@ -46,13 +46,25 @@
                     </ul>
                 </li>
 
-                <!-- 로그인 -->
-                <li class="nav-item">
+                <!-- 로그인 안 된 상태 -->
+                <li class="nav-item"
+                    th:if="${session.loginUser == null}">
                     <button class="btn btn-outline-primary btn-sm"
                             data-bs-toggle="modal"
                             data-bs-target="#loginModal">
                         로그인
                     </button>
+                </li>
+
+                <!-- 로그인 된 상태 -->
+                <li class="nav-item"
+                    th:if="${session.loginUser != null}">
+                    <form th:action="@{/auth/logout}" method="post">
+                        <button type="submit"
+                                class="btn btn-outline-danger btn-sm">
+                            로그아웃
+                        </button>
+                    </form>
                 </li>
 
             </ul>
