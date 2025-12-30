@@ -20,7 +20,7 @@ public class StartupDbSmokeTest implements CommandLineRunner {
             var user = userRepository.findByUserId("sangzoon0102");
             System.out.println("[DB TEST OK] userNickname=" + user.getUserNickname());
             System.out.println("[DB TEST OK] userId=" + user.getUserId());
-            System.out.println("[DB TEST OK] userId=" + user.getUserId());
+            System.out.println("[DB TEST OK] userPw=" + user.getUserPw());
         } catch (Exception e) {
             System.out.println("[DB TEST FAIL] " + e.getMessage());
             // 원하면 e.printStackTrace(); 도 가능
