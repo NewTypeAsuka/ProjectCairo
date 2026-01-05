@@ -11,3 +11,6 @@ w
 Gsrc/main/java/com/newtypeblog/projectcairo/util/StartupDbSmokeTest.java,2\d\2dbd74e2f126854fa5e0eed3ba3ceba0a7de12a1
 y
 Isrc/main/java/com/newtypeblog/projectcairo/controller/AuthController.java,b\7\b7be15c437752e2246b1bf085800ee8062da8b05
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
