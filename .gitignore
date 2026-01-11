@@ -63,3 +63,8 @@ application-local.properties
 ####################################
 /coverage/
 /build/
+
+####################################
+# Local SSL (HTTPS) 인증서
+####################################
+src/main/resources/ssl/
