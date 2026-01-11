@@ -37,12 +37,12 @@
                     <button class="btn btn-outline-secondary btn-sm dropdown-toggle"
                             type="button"
                             data-bs-toggle="dropdown">
-                        한국어 <img src="/src/main/resources/static/img/flag/kr.svg" width="16" />
+                        한국어 <img class="lang-flag" th:src="@{/assets/img/flag/kr.svg}" />
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><button class="dropdown-item" data-lang="ko">한국어<img src="/src/main/resources/static/img/flag/kr.svg" width="16" /></button></li>
-                        <li><button class="dropdown-item" data-lang="ja">日本語<img src="/src/main/resources/static/img/flag/jp.svg" width="16" /></button></li>
-                        <li><button class="dropdown-item" data-lang="en">English<img src="/src/main/resources/static/img/flag/en.svg" width="16" /></button></li>
+                    <ul class="dropdown-menu dropdown-menu-end lang-dropdown">
+                        <li><button class="dropdown-item" data-lang="ko">한국어<img class="lang-flag" th:src="@{/assets/img/flag/kr.svg}" /></button></li>
+                        <li><button class="dropdown-item" data-lang="ja">日本語<img class="lang-flag" th:src="@{/assets/img/flag/jp.svg}" /></button></li>
+                        <li><button class="dropdown-item" data-lang="en">English<img class="lang-flag" th:src="@{/assets/img/flag/en.svg}" /></button></li>
                     </ul>
                 </li>
 

@@ -1,0 +1,52 @@
+/* =========================
+    Navbar - Language Dropdown
+   ========================= */
+
+/* 드롭다운 전체 폭 */
+.lang-dropdown {
+    min-width: 140px;
+    padding: 6px 8px;
+}
+
+/* 드롭다운 아이템 */
+.lang-dropdown .dropdown-item {
+    padding: 6px 10px;
+    font-size: 0.95rem;
+}
+
+/* 국기 아이콘 간격 */
+.lang-flag {
+    margin-left: 6px;
+    vertical-align: middle;
+    width: 18px;
+    border: 1px solid grey;
+}
+
+/* =========================
+   Navbar dropdown overlay fix
+   ========================= */
+
+/* 드롭다운이 nav 높이를 밀지 않게: absolute로 띄우기 */
+.navbar .nav-item.dropdown {
+    position: relative; /* dropdown-menu의 기준점 */
+}
+
+/* Bootstrap navbar 안에서는 dropdown-menu를 static으로 바꾸는데, 그걸 되돌린다 */
+.navbar .navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1050;      /* 본문 위로 */
+}
+
+/* end 정렬(오른쪽 붙이기) 쓰는 경우 */
+.navbar .navbar-nav .dropdown-menu.dropdown-menu-end,
+.navbar .navbar-nav .dropdown-menu.dropdown-menu-lg-end {
+    right: 0;
+    left: auto;
+}
+
+/* collapse 영역이 드롭다운을 잘라먹는 경우 대비 */
+.navbar .navbar-collapse {
+    overflow: visible;
+}
