@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class User {
 
     /* field */
-    private Long userNo;
+    private Long userNo; // 처음엔 없고 나중에 생기는 값이라 Long 타입으로 선언
     private String userId;
     private String userPw;
     private String userProfile;
