@@ -1,489 +1,277 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <!-- 기본 메타 -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>✨NewTypeBlog✨</title>
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> 
-
-    <!-- Bootstrap ICONS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- 공통 커스텀 CSS -->
-    <link rel="stylesheet" th:href="@{/assets/css/app.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/navbar.css}">
-</head>
-<body class="bg-light">
-<a id="top"></a> <!-- 최상단 이동 기준점 -->
-
-<!-- ===== NAVBAR ===== -->
-<th:block th:replace="~{layout/navbar :: navbar}"/>
-
-<!-- ===== MAIN ===== -->
-<main class="container py-4">
-    
-    <!-- 헤더 -->
-    <div class="d-flex flex-wrap align-items-start mb-4">
-
-        <!-- 좌측: 제목 영역 -->
-        <div class="mb-3">
-            <h1 class="h4 fw-bold mb-1">포스트</h1>
-            <div class="text-secondary small">순간과 생각의 기록입니다.</div>
-        </div>
-
-        <!-- 우측: 액션 영역 -->
-        <div class="d-flex align-items-center gap-2 flex-wrap ms-auto justify-content-end">
-
-            <!-- 데스크톱(md 이상): 드롭다운 -->
-            <!-- <div class="dropdown d-none d-md-inline-flex">
-                <button class="btn btn-outline-secondary btn-sm"
-                        type="button"
-                        data-bs-toggle="dropdown"
-                        data-bs-auto-close="outside"
-                        aria-expanded="false">
-                    <i class="bi bi-funnel"></i>
-                </button>
-
-                <div class="dropdown-menu dropdown-menu-end p-3" style="min-width: 420px;">
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <div class="fw-bold mb-2">언어</div>
-
-                            <div class="form-check mb-1">
-                                <input class="form-check-input" type="radio" name="language" value="ko" id="langKo">
-                                <label class="form-check-label" for="langKo">
-                                    한국어 <img src="/src/main/resources/static/img/flag/kr.svg" width="16" />
-                                </label>
-                            </div>
-
-                            <div class="form-check mb-1">
-                                <input class="form-check-input" type="radio" name="language" value="jp" id="langJp">
-                                <label class="form-check-label" for="langJp">
-                                    日本語 <img src="/src/main/resources/static/img/flag/jp.svg" width="16" />
-                                </label>
-                            </div>
-
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="language" value="en" id="langEn">
-                                <label class="form-check-label" for="langEn">
-                                    English <img src="/src/main/resources/static/img/flag/en.svg" width="16" />
-                                </label>
-                            </div>
-
-                            <button id="filterResetBtn" type="button"
-                                    class="btn btn-outline-secondary btn-sm w-100">
-                                초기화
-                            </button>
-                        </div>
-
-                        <div class="col-6">
-                            <div class="fw-bold mb-2">태그</div>
-
-                            <div class="form-check mb-1">
-                                <input class="form-check-input" type="checkbox" value="essay" id="tagEssay">
-                                <label class="form-check-label" for="tagEssay">에세이</label>
-                            </div>
-
-                            <div class="form-check mb-1">
-                                <input class="form-check-input" type="checkbox" value="dev" id="tagDev">
-                                <label class="form-check-label" for="tagDev">개발</label>
-                            </div>
-
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="daily" id="tagDaily">
-                                <label class="form-check-label" for="tagDaily">일상</label>
-                            </div>
-
-                            <button id="filterSearchBtn" type="button"
-                                    class="btn btn-primary btn-sm w-100">
-                                검색
-                            </button>
-                        </div>
-
-                        <div class="col-12">
-                            <div id="filterHint" class="small text-muted text-center mt-1">
-                                최소 하나 이상의 언어 혹은 태그를 선택해주세요
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div> -->
-
-            <!-- 모바일(sm 이하): 모달 -->
-            <!-- <button class="btn btn-outline-secondary btn-sm d-inline-flex d-md-none"
-                    type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#filterModal">
-                <i class="bi bi-funnel"></i>
-            </button> -->
-
-            <!-- 글쓰기 -->
-            <a href="/src/main/resources/templates/write.html" class="btn btn-primary btn-sm">
-                글쓰기
-            </a>
-        </div>
-
-
-    </div>
-
-
-    <!-- 게시글 목록 -->
-    <div id="postList" class="row g-4">
-
-        <!-- 게시글 카드(썸네일) -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm position-relative">
-
-                <!-- 공통 Header -->
-                <div class="card-header bg-white d-flex justify-content-between align-items-center small text-muted">
-                    <span>
-                        <i class="bi bi-pin-angle-fill text-warning"></i>
-                        <i class="bi bi-lock-fill text-secondary"></i>
-                    </span>
-                    <span>
-                    </span>
-                    <div class="d-flex gap-2">
-                        <span><i class="bi bi-eye"></i> 123</span>
-                        <span><i class="bi bi-chat"></i> 4</span>
-                        <span><i class="bi bi-heart"></i> 12</span>
-                    </div>
-                </div>
-
-                <!-- Body -->
-                <div class="card-body p-0">
-
-                    <!-- 썸네일 (여백 없음) -->
-                    <img src="/src/main/resources/static/img/test/프로필_아스카.png"
-                        class="img-fluid w-100"
-                        alt="게시글 썸네일">
-
-                    <!-- 텍스트 영역 -->
-                    <div class="p-3">
-                        <h5 class="card-title mb-2">
-                            샘플 게시글 제목1
-                        </h5>
-
-                        <p class="card-text text-muted mb-0">
-                            여기에 게시글 요약이 들어갑니다. 내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
-                        </p>
-                    </div>
-
-                    <a href="/read.html?id=1" class="stretched-link" aria-label="게시글로 이동"></a>
-                </div>
-
-                <!-- Footer -->
-                <div class="card-footer bg-white d-flex justify-content-between small text-muted">
-                    <span>상준</span>
-                    <span>2025-12-20</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 게시글 카드 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm position-relative">
-
-                <!-- 공통 Header -->
-                <div class="card-header bg-white d-flex justify-content-between align-items-center small text-muted">
-                    <span>
-                        <i class="bi bi-lock-fill text-secondary"></i>
-                    </span>
-                    <div class="d-flex gap-2">
-                        <span><i class="bi bi-eye"></i> 123</span>
-                        <span><i class="bi bi-chat"></i> 4</span>
-                        <span><i class="bi bi-heart"></i> 12</span>
-                    </div>
-                </div>
-
-                <!-- Body -->
-                <div class="card-body p-0">
-
-                    <!-- 텍스트 영역 -->
-                    <div class="p-3">
-                        <h5 class="card-title mb-2">
-                            샘플 게시글 제목2
-                        </h5>
-
-                        <p class="card-text text-muted mb-0">
-                            여기에 게시글 요약이 들어갑니다. 내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
-                        </p>
-                    </div>
-
-                    <a href="/read.html?id=1" class="stretched-link" aria-label="게시글로 이동"></a>
-                </div>
-
-                <!-- Footer -->
-                <div class="card-footer bg-white d-flex justify-content-between small text-muted">
-                    <span>상준</span>
-                    <span>2025-12-20</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 게시글 카드 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm position-relative">
-
-                <!-- 공통 Header -->
-                <div class="card-header bg-white d-flex justify-content-between align-items-center small text-muted">
-                    <span>
-                        <i class="bi bi-pin-angle-fill text-warning"></i>
-                    </span>
-                    <div class="d-flex gap-2">
-                        <span><i class="bi bi-eye"></i> 123</span>
-                        <span><i class="bi bi-chat"></i> 4</span>
-                        <span><i class="bi bi-heart"></i> 12</span>
-                    </div>
-                </div>
-
-                <!-- Body -->
-                <div class="card-body p-0">
-
-                    <!-- 텍스트 영역 -->
-                    <div class="p-3">
-                        <h5 class="card-title mb-2">
-                            샘플 게시글 제목3
-                        </h5>
-
-                        <p class="card-text text-muted mb-0">
-                            여기에 게시글 요약이 들어갑니다. 내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
-                        </p>
-                    </div>
-
-                    <a href="/read.html?id=1" class="stretched-link" aria-label="게시글로 이동"></a>
-                </div>
-
-                <!-- Footer -->
-                <div class="card-footer bg-white d-flex justify-content-between small text-muted">
-                    <span>상준</span>
-                    <span>2025-12-20</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 게시글 카드 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm position-relative">
-
-                <!-- 공통 Header -->
-                <div class="card-header bg-white d-flex justify-content-between align-items-center small text-muted">
-                    <span>
-                        <i class="bi bi-pin-angle-fill text-warning"></i>
-                    </span>
-                    <div class="d-flex gap-2">
-                        <span><i class="bi bi-eye"></i> 123</span>
-                        <span><i class="bi bi-chat"></i> 4</span>
-                        <span><i class="bi bi-heart"></i> 12</span>
-                    </div>
-                </div>
-
-                <!-- Body -->
-                <div class="card-body p-0">
-
-                    <!-- 텍스트 영역 -->
-                    <div class="p-3">
-                        <h5 class="card-title mb-2">
-                            샘플 게시글 제목4
-                        </h5>
-
-                        <p class="card-text text-muted mb-0">
-                            여기에 게시글 요약이 들어갑니다. 내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
-                        </p>
-                    </div>
-
-                    <a href="/read.html?id=1" class="stretched-link" aria-label="게시글로 이동"></a>
-                </div>
-
-                <!-- Footer -->
-                <div class="card-footer bg-white d-flex justify-content-between small text-muted">
-                    <span>상준</span>
-                    <span>2025-12-20</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 더보기 영역 -->
-    <div id="postMore" class="text-center mt-4">
-
-        <!-- 더보기 버튼 -->
-        <button id="loadMoreBtn" type="button" class="btn btn-outline-secondary btn-sm w-100">
-            <span id="loadMoreText">포스트 더보기</span>
-
-            <!-- 로딩 스피너(기본 숨김, JS로 토글) -->
-            <span id="loadMoreSpinner" class="spinner-border spinner-border-sm ms-2 d-none"
-                role="status" aria-hidden="true"></span>
-        </button>
-
-        <!-- 더 읽을 글이 없을 때 문구(기본 숨김, JS로 토글) -->
-        <div id="noMorePosts" class="text-muted small mt-3 d-none">
-            더 읽을 포스트가 없어요
-        </div>
-    </div>
-
-</main>
-
-<!-- ===== FOOTER ===== -->
-<th:block th:replace="~{layout/footer :: footer}"/>
-
-<!-- ===== MODALS AREA ===== -->
-
-<!-- 로그인 모달 -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="loginModalLabel">로그인</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<html lang="ko"
+        xmlns:th="http://www.thymeleaf.org"
+        th:replace="~{layout/base :: layout(
+            '✨NewTypeBlog✨',
+            ~{::content}
+    )}">
+
+<th:block th:fragment="content">
+
+    <!-- ===== MAIN ===== -->
+    <main class="container py-4">
+
+        <!-- 헤더 -->
+        <div class="d-flex flex-wrap align-items-start mb-4">
+
+            <!-- 좌측: 제목 영역 -->
+            <div class="mb-3">
+                <h1 class="h4 fw-bold mb-1">포스트</h1>
+                <div class="text-secondary small">순간과 생각의 기록입니다.</div>
             </div>
 
-            <div class="modal-body">
-                <form id="loginForm" th:action="@{/auth/login}" method="post">
-                    <div class="mb-3">
-                        <label class="form-label">아이디</label>
-                        <input type="text" class="form-control" name="userId" placeholder="아이디를 입력해주세요" required>
-                    </div>
+            <!-- 우측: 액션 영역 -->
+            <div class="d-flex align-items-center gap-2 flex-wrap ms-auto justify-content-end">
 
-                    <div class="mb-2">
-                        <label class="form-label">비밀번호</label>
-                        <input type="password" class="form-control" name="userPw" placeholder="비밀번호를 입력해주세요" required>
-                    </div>
+                <!-- (예: 필터 버튼 등, 필요하면 나중에 여기 추가) -->
 
-                    <div class="d-flex justify-content-end gap-2 mt-2">
-                        <span id="loginHint" class="text-secondary small">
-                            블로그 주인장만 로그인할 수 있습니다
+                <!-- 글쓰기 -->
+                <!-- 실제 라우팅 생기면 th:href="@{/write}" 같은 형태로 바꾸는 걸 추천 -->
+                <a href="/src/main/resources/templates/write.html" class="btn btn-primary btn-sm">
+                    글쓰기
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- 게시글 목록 -->
+        <div id="postList" class="row g-4">
+
+            <!-- 게시글 카드(썸네일) -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm position-relative">
+
+                    <!-- 공통 Header -->
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center small text-muted">
+                        <span>
+                            <i class="bi bi-pin-angle-fill text-warning"></i>
+                            <i class="bi bi-lock-fill text-secondary"></i>
                         </span>
+                        <span>
+                        </span>
+                        <div class="d-flex gap-2">
+                            <span><i class="bi bi-eye"></i> 123</span>
+                            <span><i class="bi bi-chat"></i> 4</span>
+                            <span><i class="bi bi-heart"></i> 12</span>
+                        </div>
                     </div>
-                </form>
+
+                    <!-- Body -->
+                    <div class="card-body p-0">
+
+                        <!-- 썸네일 (여백 없음) -->
+                        <img src="/src/main/resources/static/img/test/프로필_아스카.png"
+                             class="img-fluid w-100"
+                             alt="게시글 썸네일">
+
+                        <!-- 텍스트 영역 -->
+                        <div class="p-3">
+                            <h5 class="card-title mb-2">
+                                샘플 게시글 제목1
+                            </h5>
+
+                            <p class="card-text text-muted mb-0">
+                                여기에 게시글 요약이 들어갑니다. 내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
+                            </p>
+                        </div>
+
+                        <a href="/read.html?id=1" class="stretched-link" aria-label="게시글로 이동"></a>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="card-footer bg-white d-flex justify-content-between small text-muted">
+                        <span>상준</span>
+                        <span>2025-12-20</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">취소</button>
-                <button type="submit" form="loginForm" class="btn btn-primary btn-sm">로그인</button>
+            <!-- 게시글 카드(썸네일) -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm position-relative">
+
+                    <!-- 공통 Header -->
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center small text-muted">
+                        <span>
+                            <i class="bi bi-pin-angle-fill text-warning"></i>
+                            <i class="bi bi-lock-fill text-secondary"></i>
+                        </span>
+                        <span>
+                        </span>
+                        <div class="d-flex gap-2">
+                            <span><i class="bi bi-eye"></i> 123</span>
+                            <span><i class="bi bi-chat"></i> 4</span>
+                            <span><i class="bi bi-heart"></i> 12</span>
+                        </div>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="card-body p-0">
+
+                        <!-- 썸네일 (여백 없음) -->
+                        <img src="/src/main/resources/static/img/test/프로필_아스카.png"
+                             class="img-fluid w-100"
+                             alt="게시글 썸네일">
+
+                        <!-- 텍스트 영역 -->
+                        <div class="p-3">
+                            <h5 class="card-title mb-2">
+                                샘플 게시글 제목1
+                            </h5>
+
+                            <p class="card-text text-muted mb-0">
+                                여기에 게시글 요약이 들어갑니다. 내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
+                            </p>
+                        </div>
+
+                        <a href="/read.html?id=1" class="stretched-link" aria-label="게시글로 이동"></a>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="card-footer bg-white d-flex justify-content-between small text-muted">
+                        <span>상준</span>
+                        <span>2025-12-20</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 게시글 카드(텍스트만) -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm position-relative">
+
+                    <!-- 공통 Header -->
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center small text-muted">
+                        <span>
+                            <i class="bi bi-pin-angle-fill text-warning"></i>
+                        </span>
+                        <div class="d-flex gap-2">
+                            <span><i class="bi bi-eye"></i> 123</span>
+                            <span><i class="bi bi-chat"></i> 4</span>
+                            <span><i class="bi bi-heart"></i> 12</span>
+                        </div>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="card-body p-0">
+
+                        <!-- 텍스트 영역 -->
+                        <div class="p-3">
+                            <h5 class="card-title mb-2">
+                                샘플 게시글 제목4
+                            </h5>
+
+                            <p class="card-text text-muted mb-0">
+                                여기에 게시글 요약이 들어갑니다. 내용이 길어지면 두세 줄까지만 보이도록 처리할 예정입니다.
+                            </p>
+                        </div>
+
+                        <a href="/read.html?id=1" class="stretched-link" aria-label="게시글로 이동"></a>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="card-footer bg-white d-flex justify-content-between small text-muted">
+                        <span>상준</span>
+                        <span>2025-12-20</span>
+                    </div>
+                </div>
             </div>
 
         </div>
-    </div>
-</div>
 
-<!-- 검색 모달 -->
-<!-- <div class="modal fade" id="filterModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
 
-            <div class="modal-header">
-                <h5 class="modal-title">필터</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+        <!-- 더보기 영역 -->
+        <div id="postMore" class="text-center mt-4">
+
+            <!-- 더보기 버튼 -->
+            <button id="loadMoreBtn" type="button" class="btn btn-outline-secondary btn-sm w-100">
+                <span id="loadMoreText">포스트 더보기</span>
+
+                <!-- 로딩 스피너(기본 숨김, JS로 토글) -->
+                <span id="loadMoreSpinner" class="spinner-border spinner-border-sm ms-2 d-none"
+                        role="status" aria-hidden="true"></span>
+            </button>
+
+            <!-- 더 읽을 글이 없을 때 문구(기본 숨김, JS로 토글) -->
+            <div id="noMorePosts" class="text-muted small mt-3 d-none">
+                더 읽을 포스트가 없어요
             </div>
+        </div>
 
-            <div class="modal-body">
+    </main>
 
-                <div class="row g-3">
 
-                    <div class="col-6">
-                        <div class="fw-bold mb-2">언어</div>
+    <!-- ===== FLOATING BUTTONS AREA ===== -->
+    <div class="position-fixed bottom-0 end-0 p-3 d-flex flex-row gap-2"
+            style="z-index: 1050;">
 
-                        <div class="form-check mb-1">
-                            <input class="form-check-input" type="radio" name="language" value="ko" id="langKo">
-                            <label class="form-check-label" for="langKo">
-                                한국어 <img src="/src/main/resources/static/img/flag/kr.svg" width="16" />
-                            </label>
+        <!-- 글쓰기 버튼 -->
+        <a href="/src/main/resources/templates/write.html"
+            class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center shadow"
+            style="width: 52px; height: 52px;"
+            title="글쓰기">
+            <i class="bi bi-plus-lg fs-4"></i>
+        </a>
+
+        <!-- 맨 위로 버튼 -->
+        <a href="#top"
+            class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center shadow"
+            style="width: 52px; height: 52px;"
+            title="위로">
+            <i class="bi bi-arrow-up fs-4"></i>
+        </a>
+
+    </div>
+
+
+    <!-- ===== MODALS AREA ===== -->
+
+    <!-- 로그인 모달 -->
+    <!-- <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="loginModalLabel">로그인</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="loginForm" th:action="@{/auth/login}" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">아이디</label>
+                            <input type="text" class="form-control" name="userId" placeholder="아이디를 입력해주세요" required>
                         </div>
 
-                        <div class="form-check mb-1">
-                            <input class="form-check-input" type="radio" name="language" value="jp" id="langJp">
-                            <label class="form-check-label" for="langJp">
-                                日本語 <img src="/src/main/resources/static/img/flag/jp.svg" width="16" />
-                            </label>
+                        <div class="mb-2">
+                            <label class="form-label">비밀번호</label>
+                            <input type="password" class="form-control" name="userPw" placeholder="비밀번호를 입력해주세요" required>
                         </div>
 
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="language" value="en" id="langEn">
-                            <label class="form-check-label" for="langEn">
-                                English <img src="/src/main/resources/static/img/flag/en.svg" width="16" />
-                            </label>
+                        <div class="d-flex justify-content-end gap-2 mt-2">
+                            <span id="loginHint" class="text-secondary small">
+                                블로그 주인장만 로그인할 수 있습니다
+                            </span>
                         </div>
+                    </form>
+                </div>
 
-                        <button id="filterResetBtn" type="button"
-                                class="btn btn-outline-secondary btn-sm w-100">
-                            초기화
-                        </button>
-                    </div>
-
-
-                    <div class="col-6">
-                        <div class="fw-bold mb-2">태그</div>
-
-                        <div class="form-check mb-1">
-                            <input class="form-check-input" type="checkbox" value="essay" id="tagEssay">
-                            <label class="form-check-label" for="tagEssay">에세이</label>
-                        </div>
-
-                        <div class="form-check mb-1">
-                            <input class="form-check-input" type="checkbox" value="dev" id="tagDev">
-                            <label class="form-check-label" for="tagDev">개발</label>
-                        </div>
-
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="checkbox" value="daily" id="tagDaily">
-                            <label class="form-check-label" for="tagDaily">일상</label>
-                        </div>
-
-                        <button id="filterSearchBtn" type="button"
-                                class="btn btn-primary btn-sm w-100">
-                            검색
-                        </button>
-                    </div>
-
-                    <div class="col-12">
-                        <div id="filterHint" class="small text-muted text-center mt-1">
-                            최소 하나 이상의 언어 혹은 태그를 선택해주세요
-                        </div>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">취소</button>
+                    <button type="submit" form="loginForm" class="btn btn-primary btn-sm">로그인</button>
                 </div>
 
             </div>
-
         </div>
+    </div> -->
+
+    <!-- 검색 모달(필요하면 나중에 살려서 쓰기) -->
+    <!--
+    <div class="modal fade" id="filterModal" tabindex="-1" aria-hidden="true">
+        ...
     </div>
-</div> -->
+    -->
 
-
-<!-- ===== FLOATING BUTTONS AREA ===== -->
-<div class="position-fixed bottom-0 end-0 p-3 d-flex flex-row gap-2" 
-    style="z-index: 1050;">
-
-    <!-- 글쓰기 버튼 -->
-    <a href="/src/main/resources/templates/write.html"
-        class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center shadow"
-        style="width: 52px; height: 52px;"
-        title="글쓰기">
-        <i class="bi bi-plus-lg fs-4"></i>
-    </a>
-
-    <!-- 맨 위로 버튼 -->
-    <a href="#top"
-        class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center shadow"
-        style="width: 52px; height: 52px;"
-        title="위로">
-        <i class="bi bi-arrow-up fs-4"></i>
-    </a>
-
-</div>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- 공통 JS -->
-<script defer th:src="@{/assets/js/login.js}"></script>
-<script defer th:src="@{/assets/js/app.js}"></script> <!-- 모듈로 관리 -->
-<script defer th:src="@{/assets/js/navbar.js}"></script>
-</body>
+</th:block>
 </html>

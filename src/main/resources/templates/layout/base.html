@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(pageTitle, content)">
+
 <head>
     <!-- 기본 메타 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- title -->
-    <title>✨NewTypePosts✨</title>
-    <title>📝NewTypePosts:::포스트📝</title>
-    <title>📝NewTypePosts:::글쓰기📝</title>
+    <!-- title: 페이지에서 전달받음 -->
+    <title th:text="${pageTitle}">NewTypeBlog</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,45 +15,32 @@
     <!-- Bootstrap ICONS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- 공통 커스텀 CSS -->
-    <!-- TODO: 지금은 네 프로젝트 경로를 유지. 나중에 스프링부트에선 /css/app.css 로 바꾸는 걸 권장 -->
-    <link rel="stylesheet" href="/src/main/resources/static/css/app.css">
-
-    <!-- Summernote (Lite) CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/assets/css/app.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/navbar.css}">
 </head>
 
 <body class="bg-light">
-<a id="top"></a> <!-- 최상단 이동 기준점 -->
+    <a id="top"></a>
 
-<!-- ===== NAVBAR START ===== -->
-<!-- TODO: 지금은 navbar.html 내용을 복사/붙여넣기 -->
-<!-- ===== NAVBAR END ===== -->
+    <!-- NAVBAR -->
+    <th:block th:replace="~{layout/navbar :: navbar}"/>
 
-<!-- ===== PAGE CONTENT START ===== -->
-<!-- 각 페이지(index/read/write)에서 이 구역만 다르게 가져가면 됨 -->
-<!-- ===== PAGE CONTENT END ===== -->
+    <!-- CONTENT (각 페이지가 여기에 꽂힘) -->
+    <th:block th:replace="${content}"></th:block>
 
-<!-- ===== FOOTER START ===== -->
-<!-- 필요하면 index.html에 있는 footer를 공통으로 옮겨도 됨 -->
-<!--
-<footer class="border-top bg-white py-3 mt-5">
-    <div class="container text-center text-muted small">
-        © 2025 NewTypeAsuka | All rights reserved.
-    </div>
-</footer>
--->
-<!-- ===== FOOTER END ===== -->
+    <!-- FOOTER -->
+    <th:block th:replace="~{layout/footer :: footer}"/>
 
-<!-- Bootstrap JS (bundle) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- LOGIN MODAL -->
+    <th:block th:replace="~{layout/modal/login :: loginModal}"/>
 
-<!-- ===== PAGE EXTRA JS START ===== -->
-<!-- 예: write.html의 jQuery + summernote js 같은 “페이지 전용 JS”는 여기 추가 -->
-<!-- ===== PAGE EXTRA JS END ===== -->
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- 공통 JS -->
-<script src="/src/main/resources/static/js/app.js"></script>
-<script src="/src/main/resources/static/js/navbar.js"></script>
+    <!-- JS -->
+    <script defer th:src="@{/assets/js/login.js}"></script>
+    <script defer th:src="@{/assets/js/app.js}"></script>
+    <script defer th:src="@{/assets/js/navbar.js}"></script>
 </body>
 </html>
