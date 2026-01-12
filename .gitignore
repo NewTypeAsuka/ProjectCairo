@@ -1,11 +1,13 @@
 ####################################
-# Build 결과물
+# Build 결과물 (Java / Maven / Gradle)
 ####################################
-/target/
+target/
+build/
+out/
 *.jar
 *.war
-iv
 *.ear
+*.class
 *.log
 
 ####################################
@@ -21,7 +23,6 @@ iv
 *.iml
 *.iws
 *.ipr
-out/
 
 ####################################
 # VS Code
@@ -29,7 +30,7 @@ out/
 .vscode/
 
 ####################################
-# Eclipse / STS (혹시 쓸 경우)
+# Eclipse / STS
 ####################################
 .project
 .classpath
@@ -37,7 +38,7 @@ out/
 .springBeans
 
 ####################################
-# OS 공통
+# OS / 시스템 파일
 ####################################
 .DS_Store
 Thumbs.db
@@ -49,59 +50,57 @@ logs/
 *.tmp
 *.swp
 *.swo
+*.pid
 
 ####################################
-# 환경 변수 / 보안 파일
+# 환경 변수 / 애플리케이션 설정 (보안)
 ####################################
 .env
 .env.*
-application-local.yml
-application-local.properties
+
+# Spring Boot 기본 설정
+application.yml
+application.properties
+
+# Spring Boot profile 설정 (application-dev.yml 등)
+application-*.yml
+application-*.properties
 
 ####################################
-# 테스트 / 커버리지
+# 외부 Spring Config (Run Configuration, 서버별 설정)
 ####################################
-/coverage/
-/build/
-
-####################################
-# Local SSL (HTTPS) 인증서
-####################################
-src/main/resources/ssl/
-
-####################################
-# ProjectCairo – 로컬 DB 프로파일
-####################################
-# OS / 머신별 DB 접속 정보
-application-win.yml
-application-win.properties
-application-mac.yml
-application-mac.properties
-application-dev.yml
-application-dev.properties
-application-prod.yml
-application-prod.properties
-
-####################################
-# Spring Boot external config
-####################################
-# IntelliJ Run Configuration 에서 -Dspring.config.additional-location 로 지정한 파일들
 *.local.yml
 *.local.properties
 *.secret.yml
 *.secret.properties
 
 ####################################
-# Oracle / JDBC 관련 로컬 설정
+# SSL / 인증서 / 키 파일
 ####################################
-# DataGrip / DBeaver가 생성하는 로컬 JDBC 캐시
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+*.jks
+*.keystore
+src/main/resources/ssl/
+
+####################################
+# 테스트 / 커버리지
+####################################
+coverage/
+
+####################################
+# DB 툴 / JDBC 클라이언트 캐시
+####################################
 .jdbc/
 .datagrip/
 .dbeaver/
 
 ####################################
-# Local override
+# 개인 로컬 설정 폴더
 ####################################
-# 개인이 임시로 쓰는 설정 파일
 config-local/
 config-secret/
