@@ -81,6 +81,8 @@ application-dev.yml
 application-dev.properties
 application-prod.yml
 application-prod.properties
+src/main/resources/application.yml
+src/main/resources/application-*.yml
 
 ####################################
 # Spring Boot external config
