@@ -21,7 +21,7 @@ spring:
       enabled: true
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
-    url: jdbc:oracle:thin:@//localhost:1521/XEPDB1
+    url: jdbc:oracle:thin:@//192.168.219.103:1521/XEPDB1 # 윈도우에서 맥북 JunDB로 접속(localhost 아님)
     username: sangzoon0102
     password: seoul01!!cns
     hikari:
