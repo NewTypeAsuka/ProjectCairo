@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko"
         xmlns:th="http://www.thymeleaf.org" 
-        th:replace="~{layout/base :: layout(
-            '✨NewTypeBlog✨',
-            ~{::content}
-        )}"> <!-- base.html 로딩 -->
+        th:replace="~{layout/base :: layout('✨NewTypeBlog✨', ~{::content})}"> <!-- base.html의 layout fragment 로딩 -->
 
-<th:block th:fragment="content">
+<th:block th:fragment="content"> <!-- ~!{::content}로 이 태그 안의 내용을 인자화 해서 전달 -->
 
     <!-- ===== MAIN ===== -->
     <main class="container py-4">
-
+ㄱ
         <!-- 헤더 -->
         <div class="d-flex flex-wrap align-items-start mb-4">
 

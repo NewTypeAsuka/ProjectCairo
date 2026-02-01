@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(pageTitle, content)">
-
 <head>
     <!-- 기본 메타 -->
     <meta charset="UTF-8">
@@ -45,7 +44,8 @@
     <!-- NAVBAR -->
     <th:block th:replace="~{layout/navbar :: navbar}"/>
 
-    <!-- CONTENT (각 페이지가 여기에 꽂힘) -->
+    <!-- CONTENT -->
+    <!-- index.html의 content fragment를 layout(pageTitle, content)에서 보듯 두번째 인자로 받아서 이 부분에 꽃음-->
     <th:block th:replace="${content}"></th:block>
 
     <!-- FOOTER -->
